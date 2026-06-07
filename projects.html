@@ -1,0 +1,1402 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thenul Vidusitha - Projects</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Molle:ital@1&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Righteous&family=Zen+Dots&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+     <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Syne', 'sans-serif'],
+              mono: ['DM Mono', 'monospace'],
+              display: ['Fraunces', 'serif'],
+            },
+            colors: {
+              accent: '#e8ff47'
+            }
+          }
+        }
+      }
+    </script>
+
+    <style>
+  
+      /* Custom Scrollbar Hiding & Selection */
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      ::selection {
+        background-color: var(--accent);
+        color: black;
+      }
+
+    
+
+      /* Allow selection in admin panel inputs */
+      input,
+      textarea {
+        -webkit-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
+      }
+
+
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- DevTools Warning Screen -->
+    <div
+      id="devtools-warning"
+      class="fixed inset-0 bg-black z-[10000] hidden flex-col items-center justify-center text-white"
+    >
+      <i
+        data-lucide="terminal-square"
+        class="w-16 h-16 text-red-500 mb-4 animate-pulse"
+      ></i>
+      <h2 class="text-2xl sm:text-3xl font-black mb-2 tracking-tighter">
+        Developer Access Denied
+      </h2>
+      <p
+        class="text-gray-500 text-xs sm:text-sm tracking-widest uppercase text-center px-4"
+      >
+        Please close developer tools to view the portfolio.
+      </p>
+    </div>
+
+    <!-- Background Glow -->
+    <div
+      class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] max-w-full h-[400px] bg-[#d4ff00]/5 blur-[100px] md:blur-[150px] rounded-full pointer-events-none z-0"
+    ></div>
+
+    <div
+      id="main-wrapper"
+      class=" transition-opacity duration-300"
+    >
+     <!-- Navigation -->
+        <nav id="nav-bar" class="flex justify-between items-center p-4 sm:p-6 lg:px-12 transition-all duration-1000 transform -translate-y-10 opacity-0 relative z-50">
+         
+        </nav>
+      <!-- LOADER -->
+      <div id="loader">
+        <div class="loader-grid"></div>
+        <div class="loader-corner tl"></div>
+        <div class="loader-corner tr"></div>
+        <div class="loader-corner bl"></div>
+        <div class="loader-corner br"></div>
+        <div class="loader-logo">
+          <span>T</span><span>h</span><span>e</span><span>n</span><span>u</span
+          ><span>l</span><span class="loader-accent-char">&nbsp;</span
+          ><span>V</span><span>i</span><span>d</span><span>u</span><span>s</span
+          ><span>i</span><span>t</span><span>h</span><span>a</span>
+        </div>
+        <div class="loader-bar-wrap">
+          <div class="loader-track">
+            <div class="loader-fill" id="loaderFill"></div>
+          </div>
+          <div class="loader-meta">
+            <span class="loader-status" id="loaderStatus">Initialising</span>
+            <span class="loader-pct" id="loaderPct">0%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CURSOR -->
+
+      <div class="cursor" id="cursor"></div>
+      <div class="cursor-ring" id="cursorRing"></div>
+
+      <!-- NAV -->
+      <nav>
+        <a class="nav-logo" href="index.html">thenul vidusitha</a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="projects.html">Work</a></li>
+          <li><a href="index.html#skills">Skills</a></li>
+          <li><a href="index.html#experience">Experience</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <a class="nav-cta" href="index.html#contact">Hire me</a>
+        <div class="hamburger" id="hamburger">
+          <span></span><span></span><span></span>
+        </div>
+      </nav>
+
+      <!-- MOBILE MENU -->
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="index.html" class="menu-close">Home</a>
+        <a href="index.html#about" class="menu-close">About</a>
+        <a href="projects.html" class="menu-close">Work</a>
+        <a href="index.html#skills" class="menu-close">Skills</a>
+        <a href="index.html#experience" class="menu-close">Experience</a>
+        <a href="index.html#contact" class="menu-close">Contact</a>
+      </div>
+
+
+
+      <main class="flex-grow max-w-[1600px] mx-auto w-full pt-24 sm:pt-32 pb-12">
+        <!-- Header Section -->
+        <header
+          id="header-section"
+          class="relative z-30 px-6 sm:px-8 md:px-12 lg:px-16 mb-10 sm:mb-16 transition-all duration-1000 transform translate-y-10 opacity-0"
+        >
+          <h1
+            class="text-4xl font-['Poppins'] sm:text-5xl md:text-6xl lg:text-8xl tracking-tighter mb-8 sm:mb-12 leading-[1.1] sm:leading-[0.9]"
+          >
+            Projects that <br class="sm:hidden" />
+            <span
+              class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500"
+              >matter.</span
+            >
+          </h1>
+
+
+
+
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-6 sm:pb-8">
+            <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto z-30 relative">
+              <!-- Category Dropdown -->
+              <div class="relative filter-dropdown-container  w-full sm:w-auto">
+                <button onclick="toggleDropdown('category-menu')" class="w-full sm:w-auto flex items-center justify-between sm:justify-start gap-2 text-xs font-bold tracking-widest text-white bg-[#0f0f0f] border border-white/10 px-5 py-3 sm:py-2.5 rounded-full hover:border-[#d4ff00]/50 transition-colors focus:outline-none">
+                  <div><span class="text-gray-500 uppercase">Category:</span> <span id="selected-category" class="text-[#d4ff00] ml-1">ALL</span></div>
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400"></i>
+                </button>
+                <div id="category-menu" class="absolute z-50 top-full left-0 mt-2 w-full sm:w-48 bg-[#0f0f0f] border border-white/10 rounded-2xl shadow-2xl opacity-0 pointer-events-none transition-all duration-200 transform -translate-y-2 overflow-hidden backdrop-blur-xl">
+                  <!-- Category Filters injected by JS -->
+                </div>
+              </div>
+
+              <!-- Year Dropdown -->
+              <div class="relative filter-dropdown-container w-full sm:w-auto">
+                <button onclick="toggleDropdown('year-menu')" class="w-full sm:w-auto flex items-center justify-between sm:justify-start gap-2 text-xs font-bold tracking-widest text-white bg-[#0f0f0f] border border-white/10 px-5 py-3 sm:py-2.5 rounded-full hover:border-[#d4ff00]/50 transition-colors focus:outline-none">
+                  <div><span class="text-gray-500 uppercase">Year:</span> <span id="selected-year" class="text-[#d4ff00] ml-1">ALL</span></div>
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-gray-400"></i>
+                </button>
+                <div id="year-menu" class="absolute z-50 top-full left-0 sm:left-auto mt-2 w-full sm:w-32 bg-[#0f0f0f] border border-white/10 rounded-2xl shadow-2xl opacity-0 pointer-events-none transition-all duration-200 transform -translate-y-2 overflow-hidden backdrop-blur-xl">
+                  <!-- Year Filters injected by JS -->
+                </div>
+              </div>
+            </div>
+            <div id="project-count" class="text-xs text-gray-500 font-mono tracking-widest shrink-0 mt-2 md:mt-0 md:pb-2 text-center md:text-right">
+              <!-- Count injected by JS -->
+            </div>
+          </div>
+        </header>
+
+        <!-- Projects Grid -->
+        <section class="px-6 sm:px-8 md:px-12 lg:px-16 pb-16 sm:pb-24">
+          <div
+            id="projects-grid"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10"
+          >
+            <!-- Project Cards injected by JS -->
+          </div>
+        </section>
+      </main>
+
+      <!-- Footer -->
+      <footer>
+        <!-- Left: Logo -->
+       <div class="footer-logo">ThenulVidusitha</div>
+
+        <!-- Center: Copyright -->
+        <div class="footer-copy">
+          <p>
+            <span
+              class="cursor-pointer hover:text-white transition-colors select-none"
+              onclick="handleAdminClick()"
+              title="Admin Login"
+              >©</span>
+            <span id="year"></span> — All rights reserved | Made by Me 💙
+          </p>
+        </div>
+
+        <!-- Right: Links -->
+        <div class="footer-links">
+            <a href="#">Top</a>
+            <a href="projects.html">Work</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Security Alert Popup -->
+    <div
+      id="security-popup"
+      class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-red-600/90 backdrop-blur-md text-white px-6 py-3 rounded-full flex items-center gap-3 z-[9999] opacity-0 pointer-events-none transition-all duration-300 transform translate-y-8 shadow-[0_0_20px_rgba(220,38,38,0.5)] border border-red-400/30"
+    >
+      <i data-lucide="shield-alert" class="w-5 h-5"></i>
+      <span class="text-xs sm:text-sm font-bold tracking-widest uppercase"
+        >Action Disabled</span
+      >
+    </div>
+
+     <!-- Admin Modals -->
+    <div id="password-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden flex items-center justify-center opacity-0 transition-opacity duration-300 p-4">
+      <div class="bg-[#0f0f0f] p-6 sm:p-8 rounded-3xl border border-white/10 w-full max-w-sm transform scale-95 transition-transform duration-300 shadow-2xl" id="password-modal-content">
+        <h2 class="text-2xl font-black mb-2 text-white">Admin Access</h2>
+        <p class="text-xs text-gray-400 mb-6 font-mono">Enter your password and GitHub token to enable live publishing.</p>
+
+        <label class="block text-[10px] text-gray-500 mb-2 uppercase tracking-widest font-bold">Admin Password</label>
+        <input type="password" id="admin-password" class="w-full bg-black border border-white/20 rounded-xl p-3.5 text-sm text-white focus:border-accent outline-none mb-5 transition-colors" placeholder="Enter password" />
+
+        <label class="block text-[10px] text-gray-500 mb-2 uppercase tracking-widest font-bold">GitHub Personal Access Token</label>
+        <input type="password" id="github-token" class="w-full bg-black border border-white/20 rounded-xl p-3.5 text-sm text-white focus:border-accent outline-none mb-3 transition-colors" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" onkeydown="if (event.key === 'Enter') checkPassword();" />
+
+        <p id="password-error" class="text-red-500 text-xs mb-5 hidden font-mono tracking-tight">Incorrect password or missing token</p>
+
+        <div class="flex gap-3 mt-6">
+          <button onclick="closePasswordModal()" class="flex-1 px-4 py-3 rounded-xl border border-white/10 text-gray-400 hover:text-white transition-colors text-xs font-bold uppercase tracking-wider">Cancel</button>
+          <button onclick="checkPassword()" class="flex-1 px-4 py-3 rounded-xl bg-accent text-black font-black uppercase tracking-wider hover:shadow-[0_0_15px_rgba(212,255,0,0.3)] transition-all text-xs">Login</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" class="fixed inset-0 bg-[#050505] z-[1000] hidden overflow-y-auto opacity-0 transition-opacity duration-500">
+      <div class="max-w-6xl mx-auto p-4 sm:p-8 md:p-12 relative min-h-screen pb-24 sm:pb-32">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 md:mb-12 border-b border-white/10 pb-6 gap-6 pt-10 md:pt-0">
+          <div>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tighter">Dashboard <span class="text-accent">Admin</span></h1>
+            <p class="text-gray-500 text-[10px] sm:text-xs mt-2 font-mono tracking-widest uppercase">Manage your portfolio items</p>
+          </div>
+          
+          <div class="flex flex-wrap items-center gap-3 w-full md:w-auto">
+            <span id="save-status" class="text-xs text-gray-500 font-mono hidden items-center gap-1.5 bg-white/5 px-4 py-2 rounded-lg w-full sm:w-auto mb-2 sm:mb-0"></span>
+
+            <button onclick="exportSourceCode()" class="flex-1 sm:flex-none justify-center text-gray-400 hover:text-accent px-4 py-3 sm:py-2.5 rounded-xl hover:bg-white/5 transition-colors focus:outline-none flex items-center gap-2 text-xs font-bold border border-white/5 hover:border-white/10">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              <span class="inline">Export HTML</span>
+            </button>
+
+            <button onclick="publishToGithub()" class="flex-1 sm:flex-none justify-center bg-accent text-black hover:bg-white px-5 py-3 sm:py-2.5 rounded-xl transition-colors focus:outline-none flex items-center gap-2 text-xs font-black shadow-[0_0_15px_rgba(212,255,0,0.2)]">
+              <i data-lucide="cloud-upload" class="w-4 h-4"></i>
+              <span class="inline">Publish</span>
+            </button>
+
+            <button onclick="closeAdminPanel()" class="w-12 h-12 sm:w-10 sm:h-10 flex items-center justify-center text-gray-400 hover:text-white rounded-xl hover:bg-white/5 transition-colors focus:outline-none bg-white/5 border border-white/10 shrink-0">
+              <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project List View -->
+        <div id="admin-list-view">
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 md:mb-8 gap-4">
+            <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">All Projects</h2>
+            <button onclick="showAdminForm()" class="w-full sm:w-auto bg-white text-black px-6 py-3.5 sm:py-3 rounded-xl font-black text-xs uppercase tracking-wider hover:scale-[1.02] transition-transform flex items-center justify-center gap-2">
+              <i data-lucide="plus" class="w-4 h-4"></i> New Project
+            </button>
+          </div>
+          <div id="admin-projects-list" class="flex flex-col gap-4"></div>
+        </div>
+
+        <!-- Form View -->
+        <div id="admin-form-view" class="hidden bg-[#0a0a0a] border border-white/10 rounded-3xl p-5 sm:p-8 md:p-10 shadow-2xl">
+          <h2 id="form-title" class="text-2xl sm:text-3xl font-black mb-8 text-white border-b border-white/10 pb-5 tracking-tight">Add Project</h2>
+          <input type="hidden" id="proj-id" />
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mb-6">
+            <div>
+              <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-bold">Project Title</label>
+              <input type="text" id="proj-title" class="w-full bg-black border border-white/10 rounded-xl p-4 text-sm text-white focus:border-accent outline-none transition-colors" />
+            </div>
+            <div>
+              <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-bold">Category</label>
+              <select id="proj-category" style="color-scheme: dark" class="w-full bg-black border border-white/10 rounded-xl p-4 text-sm text-white focus:border-accent outline-none transition-colors cursor-pointer appearance-none"></select>
+            </div>
+            <div>
+              <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-bold">Year</label>
+              <select id="proj-year" style="color-scheme: dark" class="w-full bg-black border border-white/10 rounded-xl p-4 text-sm text-white focus:border-accent outline-none transition-colors cursor-pointer appearance-none"></select>
+            </div>
+            <div>
+              <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-bold">Tech Stack (comma separated)</label>
+              <div class="relative">
+                <input type="text" id="proj-tech" class="w-full bg-black border border-white/10 rounded-xl p-4 text-sm text-white focus:border-accent outline-none transition-colors" placeholder="React, Node.js, Tailwind" autocomplete="off" />
+                <div id="tech-suggestions" class="absolute z-50 top-full left-0 mt-2 w-full bg-[#111] border border-white/10 rounded-xl shadow-2xl opacity-0 pointer-events-none transition-opacity duration-200 overflow-hidden max-h-48 overflow-y-auto"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-8">
+            <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-bold">Description</label>
+            <textarea id="proj-desc" rows="4" class="w-full bg-black border border-white/10 rounded-xl p-4 text-sm text-white focus:border-accent outline-none transition-colors"></textarea>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mb-8 bg-white/[0.02] p-5 sm:p-8 rounded-2xl border border-white/5">
+            <div>
+              <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-bold">Image URL</label>
+              <input type="text" id="proj-image-url" class="w-full bg-black border border-white/10 rounded-xl p-4 text-sm text-white focus:border-accent outline-none transition-colors" placeholder="https://example.com/image.jpg" />
+            </div>
+            <div>
+              <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-bold">Background Gradient (Fallback)</label>
+              <input type="text" id="proj-gradient" class="w-full bg-black border border-white/10 rounded-xl p-4 text-sm text-white focus:border-accent outline-none transition-colors" placeholder="from-[#1a1a24] to-[#0a0a0f]" />
+            </div>
+          </div>
+
+          <div class="flex flex-col-reverse sm:flex-row justify-end gap-3 sm:gap-4 border-t border-white/10 pt-8">
+            <button onclick="hideAdminForm()" class="w-full sm:w-auto px-8 py-4 sm:py-3 rounded-xl border border-white/10 text-gray-400 hover:text-white transition-colors font-bold text-xs uppercase tracking-wider">Cancel</button>
+            <button onclick="saveProject()" class="w-full sm:w-auto px-8 py-4 sm:py-3 rounded-xl bg-accent text-black font-black hover:shadow-[0_0_20px_rgba(212,255,0,0.3)] transition-all text-xs uppercase tracking-wider">Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- Centralized Projects Data -->
+    <script id="portfolio-data">
+      window.projects = [
+        {
+          id: 1,
+          title: "VoltFlow — Real-time Analytics",
+          category: "WEB APP",
+          year: "2024",
+          description:
+            "A high-throughput data pipeline and visualization platform processing 50M+ events per day. Built with React, WebSockets, and a distributed backend.",
+          tech: ["React", "WebSockets", "ClickHouse", "Node.js"],
+          link: "#",
+          imageUrl:
+            "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
+          gradient: "from-[#1a1a24] to-[#0a0a0f]",
+        },
+        {
+          id: 2,
+          title: "Tideline CMS",
+          category: "SAAS",
+          year: "2024",
+          description:
+            "Headless CMS with a real-time collaborative editor. Think Notion meets Contentful — built for developer-first teams.",
+          tech: ["Next.js", "Prisma", "PostgreSQL"],
+          link: "#",
+          imageUrl:
+            "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
+          gradient: "from-[#101827] to-[#0a0a0f]",
+        },
+        {
+          id: 3,
+          title: "Neon Nights - Music Video",
+          category: "VIDEO",
+          year: "2023",
+          description:
+            "A cyberpunk-inspired music video featuring heavy VFX, 3D compositing, and dynamic color grading.",
+          tech: ["Premiere Pro", "After Effects", "Blender"],
+          link: "#",
+          imageUrl:
+            "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop",
+          gradient: "from-[#251027] to-[#0a0a0f]",
+        },
+        {
+          id: 4,
+          title: "Aura Brand Identity",
+          category: "DESIGN",
+          year: "2023",
+          description:
+            "Complete visual identity, logo design, and brand guidelines for a modern wellness startup.",
+          tech: ["Illustrator", "Figma", "Photoshop"],
+          link: "#",
+          imageUrl:
+            "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop",
+          gradient: "from-[#271018] to-[#0a0a0f]",
+        },
+        {
+          id: 5,
+          title: "Crypto Dashboard UI",
+          category: "DESIGN",
+          year: "2024",
+          description:
+            "Sleek, dark-mode focused user interface design for a decentralized finance trading platform.",
+          tech: ["Figma", "Prototyping"],
+          link: "#",
+          imageUrl:
+            "https://images.unsplash.com/photo-1605792657660-596af9009e82?q=80&w=800&auto=format&fit=crop",
+          gradient: "from-[#10271c] to-[#0a0a0f]",
+        },
+        {
+          id: 6,
+          title: "Motion Reel 2024",
+          category: "VIDEO",
+          year: "2024",
+          description:
+            "A compilation of my best motion graphics and 3D animation work from the past year.",
+          tech: ["After Effects", "Cinema 4D"],
+          link: "#",
+          imageUrl:
+            "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=800&auto=format&fit=crop",
+          gradient: "from-[#271c10] to-[#0a0a0f]",
+        },
+      ];
+    </script>
+
+
+
+
+
+
+    <!-- Application UI Logic -->
+    <script>
+      // --- IMPORTANT: UPDATE THESE FOR GITHUB INTEGRATION ---
+      const GITHUB_CONFIG = {
+        owner: "thenul-vidusitha", // e.g., 'thenul'
+        repo: "MyPortfolioWeb", // e.g., 'thenul.github.io' or 'portfolio'
+        path: "responsive_portfolio (1).html", // The path to this file in your repo
+        branch: "main", // Usually 'main' or 'master'
+      };
+      // -----------------------------------------------------
+
+      const categories = ["ALL", "SAAS", "WEB APP", "VIDEO", "DESIGN"];
+      const commonTech = [
+        "React",
+        "Vue",
+        "Angular",
+        "Node.js",
+        "Tailwind CSS",
+        "Next.js",
+        "TypeScript",
+        "JavaScript",
+        "Python",
+        "Django",
+        "Figma",
+        "Illustrator",
+        "Photoshop",
+        "After Effects",
+        "Premiere Pro",
+        "Blender",
+        "Prisma",
+        "PostgreSQL",
+        "MongoDB",
+        "ClickHouse",
+        "WebSockets",
+        "Cinema 4D",
+        "Framer Motion",
+        "Svelte",
+        "Docker",
+        "AWS",
+      ];
+      let activeCategory = "ALL";
+      let activeYear = "ALL";
+      let isMobileMenuOpen = false;
+      let activeDropdown = null;
+      let appInitialized = false;
+      let adminGithubToken = ""; // Temporarily stored in memory after login
+      let securityPopupTimeout = null;
+
+      function initApp() {
+        if (appInitialized) return;
+        appInitialized = true;
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+        renderFilters();
+        renderProjects();
+
+        setTimeout(() => {
+          document
+            .getElementById("nav-bar")
+            .classList.remove("-translate-y-10", "opacity-0");
+          document
+            .getElementById("header-section")
+            .classList.remove("translate-y-10", "opacity-0");
+        }, 100);
+
+        document.querySelectorAll(".mobile-link").forEach((link) => {
+          link.addEventListener("click", () => {
+            if (isMobileMenuOpen) toggleMobileMenu();
+          });
+        });
+
+        document.addEventListener("click", (e) => {
+          if (!e.target.closest(".filter-dropdown-container")) {
+            closeAllDropdowns();
+          }
+          if (
+            !e.target.closest("#tech-suggestions") &&
+            e.target.id !== "proj-tech"
+          ) {
+            hideTechSuggestions();
+          }
+        });
+
+        document
+          .getElementById("proj-tech")
+          .addEventListener("input", handleTechInput);
+
+        setupSecurityFeatures();
+      }
+
+      // --- SECURITY FEATURES ---
+      function setupSecurityFeatures() {
+        const showSecurityPopup = () => {
+          const popup = document.getElementById("security-popup");
+          popup.classList.remove("opacity-0", "translate-y-8");
+
+          clearTimeout(securityPopupTimeout);
+          securityPopupTimeout = setTimeout(() => {
+            popup.classList.add("opacity-0", "translate-y-8");
+          }, 3000);
+        };
+
+        // Disable Right Click
+        document.addEventListener("contextmenu", (e) => {
+          if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")
+            return; // Allow in inputs
+          e.preventDefault();
+          showSecurityPopup();
+        });
+
+        // Disable Copy/Cut Events
+        ["copy", "cut"].forEach((event) => {
+          document.addEventListener(event, (e) => {
+            if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")
+              return;
+            e.preventDefault();
+            showSecurityPopup();
+          });
+        });
+
+        // Disable Keyboard Shortcuts (Ctrl+C, Cmd+C, etc)
+        document.addEventListener("keydown", (e) => {
+          if (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")
+            return;
+
+          // Block Ctrl/Cmd + C, X, U (View Source), S (Save), P (Print), I (Inspect), J (Console)
+          if (
+            (e.ctrlKey || e.metaKey) &&
+            ["c", "x", "u", "s", "p", "i", "j"].includes(e.key.toLowerCase())
+          ) {
+            e.preventDefault();
+            showSecurityPopup();
+          }
+
+          // Block F12
+          if (e.key === "F12") {
+            e.preventDefault();
+            showSecurityPopup();
+          }
+        });
+
+        // --- DevTools Detection & UI Hiding ---
+        let devToolsOpen = false;
+        // 160px is a standard threshold for docked devtools
+        const threshold = 160;
+
+        const checkDevTools = () => {
+          const widthThreshold =
+            window.outerWidth - window.innerWidth > threshold;
+          const heightThreshold =
+            window.outerHeight - window.innerHeight > threshold;
+
+          if (widthThreshold || heightThreshold) {
+            if (!devToolsOpen) {
+              devToolsOpen = true;
+              // Hide main site, show warning
+              document.getElementById("main-wrapper").style.display = "none";
+              document
+                .getElementById("devtools-warning")
+                .classList.remove("hidden");
+              document.getElementById("devtools-warning").classList.add("flex");
+            }
+          } else {
+            if (devToolsOpen) {
+              devToolsOpen = false;
+              // Restore main site, hide warning
+              document.getElementById("main-wrapper").style.display = "block";
+              document
+                .getElementById("devtools-warning")
+                .classList.add("hidden");
+              document
+                .getElementById("devtools-warning")
+                .classList.remove("flex");
+            }
+          }
+        };
+
+        window.addEventListener("resize", checkDevTools);
+        setInterval(checkDevTools, 500);
+        checkDevTools(); // Initial check
+      }
+
+      window.refreshUI = function () {
+        renderAdminProjects();
+        updateAndAnimateCards();
+      };
+
+     
+
+      function toggleDropdown(id) {
+        const menu = document.getElementById(id);
+        const isClosing = menu.classList.contains("opacity-100");
+
+        closeAllDropdowns();
+
+        if (!isClosing) {
+          menu.classList.remove(
+            "opacity-0",
+            "pointer-events-none",
+            "-translate-y-2",
+          );
+          menu.classList.add(
+            "opacity-100",
+            "pointer-events-auto",
+            "translate-y-0",
+          );
+          activeDropdown = id;
+        }
+      }
+
+      function closeAllDropdowns() {
+        ["category-menu", "year-menu"].forEach((id) => {
+          const menu = document.getElementById(id);
+          if (menu) {
+            menu.classList.add(
+              "opacity-0",
+              "pointer-events-none",
+              "-translate-y-2",
+            );
+            menu.classList.remove(
+              "opacity-100",
+              "pointer-events-auto",
+              "translate-y-0",
+            );
+          }
+        });
+        activeDropdown = null;
+      }
+
+      function getAvailableTech() {
+        const allTech = new Set(commonTech);
+        window.projects.forEach((p) => p.tech.forEach((t) => allTech.add(t)));
+        return Array.from(allTech).sort();
+      }
+
+      function handleTechInput(e) {
+        const val = e.target.value;
+        const parts = val.split(",");
+        const currentPart = parts[parts.length - 1].trim().toLowerCase();
+
+        if (!currentPart) {
+          hideTechSuggestions();
+          return;
+        }
+
+        const availableTech = getAvailableTech();
+        const addedTech = parts.slice(0, -1).map((p) => p.trim().toLowerCase());
+
+        const suggestions = availableTech.filter(
+          (t) =>
+            t.toLowerCase().includes(currentPart) &&
+            t.toLowerCase() !== currentPart &&
+            !addedTech.includes(t.toLowerCase()),
+        );
+
+        if (suggestions.length === 0) {
+          hideTechSuggestions();
+          return;
+        }
+
+        renderTechSuggestions(suggestions);
+      }
+
+      function renderTechSuggestions(suggestions) {
+        const techSuggestions = document.getElementById("tech-suggestions");
+        techSuggestions.innerHTML = suggestions
+          .map(
+            (tech) => `
+                <div class="px-4 py-2 text-sm text-gray-300 hover:text-white hover:bg-[#d4ff00]/10 cursor-pointer transition-colors border-b border-white/5 last:border-0" onclick="selectTech('${tech}')">
+                    ${tech}
+                </div>
+            `,
+          )
+          .join("");
+        techSuggestions.classList.remove("opacity-0", "pointer-events-none");
+      }
+
+      function hideTechSuggestions() {
+        const techSuggestions = document.getElementById("tech-suggestions");
+        if (techSuggestions) {
+          techSuggestions.classList.add("opacity-0", "pointer-events-none");
+        }
+      }
+
+      window.selectTech = function (tech) {
+        const input = document.getElementById("proj-tech");
+        const parts = input.value.split(",");
+        parts.pop();
+        const newTechList =
+          parts.length > 0
+            ? parts.map((p) => p.trim()).join(", ") + ", " + tech + ", "
+            : tech + ", ";
+        input.value = newTechList;
+        input.focus();
+        hideTechSuggestions();
+      };
+
+      function renderFilters() {
+        const catContainer = document.getElementById("category-menu");
+        const yearContainer = document.getElementById("year-menu");
+
+        const baseClasses =
+          "w-full text-left px-5 py-3 text-[10px] sm:text-xs tracking-widest font-semibold transition-all duration-200 focus:outline-none flex justify-between items-center";
+        const activeClasses = "bg-[#d4ff00]/10 text-[#d4ff00]";
+        const inactiveClasses =
+          "text-gray-400 hover:text-white hover:bg-white/5";
+
+        document.getElementById("selected-category").textContent =
+          activeCategory;
+        document.getElementById("selected-year").textContent = activeYear;
+
+        catContainer.innerHTML = categories
+          .map((cat) => {
+            const isActive = activeCategory === cat;
+            return `
+                    <button 
+                        onclick="handleCategoryChange('${cat}')"
+                        class="${baseClasses} ${isActive ? activeClasses : inactiveClasses}"
+                    >
+                        ${cat}
+                        ${isActive ? '<i data-lucide="check" class="w-3 h-3"></i>' : ""}
+                    </button>
+                `;
+          })
+          .join("");
+
+        const dynamicYears = [
+          "ALL",
+          ...new Set(window.projects.map((p) => p.year)),
+        ]
+          .sort()
+          .reverse();
+
+        yearContainer.innerHTML = dynamicYears
+          .map((year) => {
+            const isActive = activeYear === year;
+            return `
+                    <button 
+                        onclick="handleYearChange('${year}')"
+                        class="${baseClasses} ${isActive ? activeClasses : inactiveClasses}"
+                    >
+                        ${year}
+                        ${isActive ? '<i data-lucide="check" class="w-3 h-3"></i>' : ""}
+                    </button>
+                `;
+          })
+          .join("");
+
+        lucide.createIcons();
+      }
+
+      function handleCategoryChange(newCat) {
+        if (newCat !== activeCategory) {
+          activeCategory = newCat;
+          updateAndAnimateCards();
+        }
+        closeAllDropdowns();
+      }
+
+      function handleYearChange(newYear) {
+        if (newYear !== activeYear) {
+          activeYear = newYear;
+          updateAndAnimateCards();
+        }
+        closeAllDropdowns();
+      }
+
+      function updateAndAnimateCards() {
+        renderFilters();
+
+        const cards = document.querySelectorAll(".project-card");
+        cards.forEach((card) => {
+          card.style.transitionDelay = "0ms";
+          card.classList.remove("opacity-100", "scale-100", "translate-y-0");
+          card.classList.add("opacity-0", "scale-95");
+        });
+
+        setTimeout(() => {
+          renderProjects();
+        }, 300);
+      }
+
+      function renderProjects() {
+        const container = document.getElementById("projects-grid");
+
+        const filteredProjects = window.projects.filter((p) => {
+          const matchCategory =
+            activeCategory === "ALL" || p.category === activeCategory;
+          const matchYear = activeYear === "ALL" || p.year === activeYear;
+          return matchCategory && matchYear;
+        });
+
+        document.getElementById("project-count").innerHTML = `
+                <span class="text-[#d4ff00] font-bold">${filteredProjects.length}</span> / ${window.projects.length} projects
+            `;
+
+        if (filteredProjects.length === 0) {
+          container.innerHTML = `
+                    <div class="col-span-full flex flex-col items-center justify-center py-20 sm:py-32 text-center border border-dashed border-white/10 rounded-2xl bg-[#0f0f0f] project-card opacity-0 translate-y-10 transition-all duration-500">
+                        <div class="bg-black/50 p-5 rounded-full mb-6 border border-white/5">
+                            <i data-lucide="folder-search-2" class="w-8 h-8 sm:w-10 sm:h-10 text-gray-600"></i>
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-black text-white mb-2 tracking-tight">NO PROJECTS INITIALIZED</h3>
+                        <p class="text-xs sm:text-sm text-gray-500 max-w-sm mx-auto leading-relaxed px-4">
+                            There are no projects matching the selected criteria. Try adjusting your filters or check back later.
+                        </p>
+                    </div>
+                `;
+        } else {
+          container.innerHTML = filteredProjects
+            .map(
+              (project, index) => `
+                    <a href="${project.link}" 
+                       class="project-card group block bg-[#0f0f0f] rounded-2xl p-4 sm:p-5 border border-white/5 hover:border-[#d4ff00]/30 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] opacity-0 translate-y-10"
+                       style="transition-delay: ${index * 100}ms">
+                        
+                        <div class="w-full h-56 sm:h-64 md:h-72 rounded-xl mb-4 sm:mb-6 relative overflow-hidden bg-gradient-to-br ${project.gradient} transition-transform duration-500 group-hover:scale-[1.02]">
+                            
+                            ${project.imageUrl ? `<img src="${project.imageUrl}" alt="${project.title}" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105" onerror="this.style.display='none'">` : ""}
+
+                            <div class="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px); background-size: 30px 30px"></div>
+
+                            <div class="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 flex justify-between items-start z-10">
+                                <span class="text-[9px] sm:text-[10px] font-bold tracking-widest text-gray-300 sm:text-gray-400 uppercase bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
+                                    ${project.category}
+                                </span>
+                                <span class="text-[9px] sm:text-[10px] font-mono tracking-widest text-gray-300 sm:text-gray-500 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
+                                    ${project.year}
+                                </span>
+                            </div>
+
+                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
+                                <div class="bg-[#d4ff00] text-black p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-[0_0_20px_rgba(212,255,0,0.4)]">
+                                    <i data-lucide="external-link" class="w-5 h-5"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="px-1 sm:px-2 flex flex-col h-[calc(100%-15rem)] sm:h-[calc(100%-17.5rem)] md:h-[calc(100%-19.5rem)]">
+                            <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 tracking-tight group-hover:text-[#d4ff00] transition-colors line-clamp-1">
+                                ${project.title}
+                            </h3>
+                            <p class="text-xs sm:text-sm text-gray-400 leading-relaxed mb-4 sm:mb-6 line-clamp-2">
+                                ${project.description}
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-1.5 sm:gap-2 mt-auto">
+                                ${project.tech
+                                  .map(
+                                    (t) => `
+                                    <span class="text-[9px] sm:text-[10px] font-mono tracking-widest text-gray-400 sm:text-gray-500 border border-white/10 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-white/5">
+                                        ${t}
+                                    </span>
+                                `,
+                                  )
+                                  .join("")}
+                            </div>
+                        </div>
+                    </a>
+                `,
+            )
+            .join("");
+        }
+
+        lucide.createIcons();
+
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            const cards = document.querySelectorAll(".project-card");
+            cards.forEach((card) => {
+              card.classList.remove("opacity-0", "translate-y-10", "scale-95");
+              card.classList.add("opacity-100", "translate-y-0", "scale-100");
+            });
+          }, 50);
+        });
+      }
+
+      window.showTemporarySaveStatus = function (
+        message,
+        isLoading = false,
+        isError = false,
+      ) {
+        const statusEl = document.getElementById("save-status");
+        if (statusEl) {
+          statusEl.classList.remove("hidden");
+          statusEl.classList.add("flex");
+
+          let icon = "check-circle";
+          let color = "text-[#d4ff00]";
+
+          if (isLoading) {
+            icon = "loader-2";
+            color = "text-white animate-spin";
+          } else if (isError) {
+            icon = "x-circle";
+            color = "text-red-500";
+          }
+
+          statusEl.innerHTML = `<i data-lucide="${icon}" class="w-4 h-4 ${color}"></i> ${message}`;
+          lucide.createIcons();
+
+          if (!isLoading) {
+            setTimeout(() => {
+              statusEl.classList.add("hidden");
+              statusEl.classList.remove("flex");
+            }, 4000);
+          }
+        }
+      };
+
+      // Prepares a clean HTML string representing the current state to be sent to GitHub
+      async function generateHTMLContent() {
+        const clone = document.documentElement.cloneNode(true);
+
+        const panel = clone.querySelector("#admin-panel");
+        if (panel) panel.classList.add("hidden", "opacity-0");
+
+        const pwdModal = clone.querySelector("#password-modal");
+        if (pwdModal) pwdModal.classList.add("hidden", "opacity-0");
+
+        // SECURITY: CRITICAL! Ensure token and password inputs are completely empty in the saved file
+        const tokenInput = clone.querySelector("#github-token");
+        if (tokenInput) tokenInput.removeAttribute("value");
+        const passInput = clone.querySelector("#admin-password");
+        if (passInput) passInput.removeAttribute("value");
+
+        const mobileMenu = clone.querySelector("#mobile-menu");
+        if (mobileMenu) {
+          mobileMenu.classList.add("opacity-0", "pointer-events-none");
+          mobileMenu.classList.remove("opacity-100", "pointer-events-auto");
+        }
+
+        clone.querySelector("body").style.overflow = "";
+
+        const grid = clone.querySelector("#projects-grid");
+        if (grid) grid.innerHTML = "";
+        const catMenu = clone.querySelector("#category-menu");
+        if (catMenu) catMenu.innerHTML = "";
+        const yearMenu = clone.querySelector("#year-menu");
+        if (yearMenu) yearMenu.innerHTML = "";
+        const adminList = clone.querySelector("#admin-projects-list");
+        if (adminList) adminList.innerHTML = "";
+        const count = clone.querySelector("#project-count");
+        if (count) count.innerHTML = "";
+
+        const techSuggestions = clone.querySelector("#tech-suggestions");
+        if (techSuggestions) {
+          techSuggestions.innerHTML = "";
+          techSuggestions.classList.add("opacity-0", "pointer-events-none");
+        }
+
+        const secPopup = clone.querySelector("#security-popup");
+        if (secPopup) secPopup.classList.add("opacity-0", "translate-y-8");
+
+        // SECURITY: Ensure exported file does not save the warning state
+        const mainWrapper = clone.querySelector("#main-wrapper");
+        if (mainWrapper) mainWrapper.style.display = "";
+
+        const dtWarning = clone.querySelector("#devtools-warning");
+        if (dtWarning) {
+          dtWarning.classList.add("hidden");
+          dtWarning.classList.remove("flex");
+        }
+
+        const dataScript = clone.querySelector("#portfolio-data");
+        if (dataScript) {
+          const projectsJson = JSON.stringify(
+            window.projects,
+            null,
+            12,
+          ).replace(/<\/script>/g, "<\\/script>");
+          dataScript.textContent = `\n        window.projects = ${projectsJson};\n    `;
+        }
+
+        return "<!DOCTYPE html>\n" + clone.outerHTML;
+      }
+
+      // --- EXPORT HTML SOURCE CODE FEATURE (MANUAL DOWNLOAD) ---
+      window.exportSourceCode = async function () {
+        try {
+          showTemporarySaveStatus("Generating file...", true);
+
+          const htmlContent = await generateHTMLContent();
+
+          // Trigger an invisible download anchor tag
+          const blob = new Blob([htmlContent], { type: "text/html" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "portfolio-updated.html";
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+
+          showTemporarySaveStatus("Export successful!");
+        } catch (error) {
+          console.error("Failed to export source code:", error);
+          showTemporarySaveStatus("Export failed", false, true);
+        }
+      };
+
+      // --- GITHUB PUBLISH LOGIC ---
+      async function publishToGithub() {
+        if (!adminGithubToken) {
+          showTemporarySaveStatus(
+            "Missing GitHub Token! Please re-login.",
+            false,
+            true,
+          );
+          return;
+        }
+
+        if (GITHUB_CONFIG.owner === "YOUR_GITHUB_USERNAME") {
+          showTemporarySaveStatus(
+            "Configuration needed! Update GITHUB_CONFIG in the code.",
+            false,
+            true,
+          );
+          return;
+        }
+
+        try {
+          showTemporarySaveStatus("Fetching file data...", true);
+
+          const htmlContent = await generateHTMLContent();
+
+          // Proper base64 encoding that handles unicode correctly
+          const bytes = new TextEncoder().encode(htmlContent);
+          const binString = Array.from(bytes, (byte) =>
+            String.fromCodePoint(byte),
+          ).join("");
+          const base64Content = btoa(binString);
+
+          // Safely encode the file path (e.g. spaces in "responsive_portfolio (1).html")
+          const encodedPath = GITHUB_CONFIG.path
+            .split("/")
+            .map(encodeURIComponent)
+            .join("/");
+          const apiUrl = `https://api.github.com/repos/${GITHUB_CONFIG.owner}/${GITHUB_CONFIG.repo}/contents/${encodedPath}`;
+
+          // 1. Get the current file's SHA (required by GitHub API to update an existing file)
+          const getRes = await fetch(apiUrl + `?ref=${GITHUB_CONFIG.branch}`, {
+            headers: { Authorization: `token ${adminGithubToken}` },
+          });
+
+          let sha = null;
+          if (getRes.ok) {
+            const fileData = await getRes.json();
+            sha = fileData.sha;
+          } else if (getRes.status !== 404) {
+            const errData = await getRes.json().catch(() => ({}));
+            throw new Error(
+              `Failed to read repo: ${errData.message || getRes.statusText}`,
+            );
+          }
+
+          showTemporarySaveStatus("Pushing update to GitHub...", true);
+
+          const bodyPayload = {
+            message: `Update portfolio: ${new Date().toLocaleString()}`,
+            content: base64Content,
+            branch: GITHUB_CONFIG.branch,
+          };
+          if (sha) bodyPayload.sha = sha;
+
+          // 2. Commit the new file back to GitHub
+          const putRes = await fetch(apiUrl, {
+            method: "PUT",
+            headers: {
+              Authorization: `token ${adminGithubToken}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(bodyPayload),
+          });
+
+          if (!putRes.ok) {
+            const errData = await putRes.json().catch(() => ({}));
+            throw new Error(
+              `Commit failed: ${errData.message || putRes.statusText}`,
+            );
+          }
+
+          showTemporarySaveStatus(
+            "Success! GitHub Pages will update in ~2 mins.",
+          );
+        } catch (error) {
+          console.error("GitHub API Error:", error);
+          showTemporarySaveStatus(error.message, false, true);
+        }
+      }
+
+      // --- ADMIN PANEL LOGIC ---
+
+      let adminClickCount = 0;
+      let adminClickTimeout = null;
+
+      function handleAdminClick() {
+        adminClickCount++;
+        clearTimeout(adminClickTimeout);
+
+        if (adminClickCount >= 6) {
+          openPasswordModal();
+          adminClickCount = 0; // Reset after opening
+        } else {
+          adminClickTimeout = setTimeout(() => {
+            adminClickCount = 0; // Reset if they stop clicking fast enough
+          }, 800); // 800ms limit between consecutive clicks
+        }
+      }
+
+      function openPasswordModal() {
+        const modal = document.getElementById("password-modal");
+        const content = document.getElementById("password-modal-content");
+        modal.classList.remove("hidden");
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            modal.classList.remove("opacity-0");
+            content.classList.remove("scale-95");
+          });
+        });
+        document.getElementById("admin-password").focus();
+      }
+
+      function closePasswordModal() {
+        const modal = document.getElementById("password-modal");
+        const content = document.getElementById("password-modal-content");
+        modal.classList.add("opacity-0");
+        content.classList.add("scale-95");
+        setTimeout(() => {
+          modal.classList.add("hidden");
+          document.getElementById("admin-password").value = "";
+          document.getElementById("github-token").value = "";
+          document.getElementById("password-error").classList.add("hidden");
+        }, 300);
+      }
+
+      function checkPassword() {
+        const pass = document.getElementById("admin-password").value;
+        const token = document.getElementById("github-token").value.trim();
+
+        // Convert inputted password to hex for comparison to obfuscate the real password
+        const hexPass = pass
+          .split("")
+          .map((c) => c.charCodeAt(0).toString(16))
+          .join("");
+
+        // '5468656e756c31303136' is the hex representation of the password
+        if (hexPass === "5468656e756c31303136" && token !== "") {
+          adminGithubToken = token; // Store token in memory
+          closePasswordModal();
+          setTimeout(openAdminPanel, 300);
+        } else {
+          document.getElementById("password-error").classList.remove("hidden");
+        }
+      }
+
+      function openAdminPanel() {
+        const panel = document.getElementById("admin-panel");
+        panel.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+        renderAdminProjects();
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            panel.classList.remove("opacity-0");
+          });
+        });
+      }
+
+      function closeAdminPanel() {
+        const panel = document.getElementById("admin-panel");
+        panel.classList.add("opacity-0");
+        document.body.style.overflow = "";
+        setTimeout(() => {
+          panel.classList.add("hidden");
+          hideAdminForm();
+        }, 500);
+      }
+
+      function renderAdminProjects() {
+        const list = document.getElementById("admin-projects-list");
+
+        if (window.projects.length === 0) {
+          list.innerHTML = `
+                    <div class="flex flex-col items-center justify-center py-16 text-center border border-dashed border-white/10 rounded-xl bg-white/5">
+                        <i data-lucide="inbox" class="w-10 h-10 text-gray-600 mb-3"></i>
+                        <h3 class="text-white font-bold mb-1">NO PROJECTS FOUND</h3>
+                        <p class="text-gray-500 text-xs">Click "New Project" to add your first portfolio item.</p>
+                    </div>
+                `;
+        } else {
+          list.innerHTML = window.projects
+            .map(
+              (p) => `
+                    <div class="bg-[#111] border border-white/5 p-4 md:p-6 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-[#d4ff00]/30 hover:bg-[#1a1a1a] transition-all group">
+                        <div class="w-full sm:w-auto">
+                            <h3 class="font-bold text-white text-sm sm:text-base md:text-lg group-hover:text-[#d4ff00] transition-colors truncate">${p.title}</h3>
+                            <p class="text-[10px] md:text-xs text-gray-500 font-mono tracking-widest mt-1">${p.category} • ${p.year}</p>
+                        </div>
+                        <div class="flex gap-2 w-full sm:w-auto self-end">
+                            <button onclick="showAdminForm(${p.id})" class="flex-1 sm:flex-none justify-center p-2 sm:px-4 sm:py-2 bg-white/5 hover:bg-white/10 rounded-lg text-gray-300 transition-colors flex items-center gap-2 text-xs font-bold">
+                                <i data-lucide="edit-2" class="w-4 h-4"></i> <span>Edit</span>
+                            </button>
+                            <button onclick="deleteProject(${p.id})" class="flex-1 sm:flex-none justify-center p-2 sm:px-4 sm:py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg transition-colors flex items-center gap-2 text-xs font-bold">
+                                <i data-lucide="trash-2" class="w-4 h-4"></i> <span>Delete</span>
+                            </button>
+                        </div>
+                    </div>
+                `,
+            )
+            .join("");
+        }
+        lucide.createIcons();
+      }
+
+      function showAdminForm(id = null) {
+        document.getElementById("admin-list-view").classList.add("hidden");
+        document.getElementById("admin-form-view").classList.remove("hidden");
+
+        const catSelect = document.getElementById("proj-category");
+        const availableCategories = categories.filter((c) => c !== "ALL");
+        const allUniqueCats = [
+          ...new Set([
+            ...availableCategories,
+            ...window.projects.map((p) => p.category),
+            "MOBILE APP",
+            "OPEN SOURCE",
+            "PHOTOGRAPHY",
+          ]),
+        ];
+        catSelect.innerHTML = allUniqueCats
+          .map((cat) => `<option value="${cat}">${cat}</option>`)
+          .join("");
+
+        const yearSelect = document.getElementById("proj-year");
+        const currentYear = new Date().getFullYear();
+        const projectYears = window.projects
+          .map((p) => parseInt(p.year))
+          .filter((y) => !isNaN(y));
+        const minYear =
+          projectYears.length > 0 ? Math.min(...projectYears) : 2015;
+        const maxYear = Math.max(currentYear + 1, ...projectYears);
+
+        let yearOptions = "";
+        for (let y = maxYear; y >= Math.min(minYear, 2015); y--) {
+          yearOptions += `<option value="${y}">${y}</option>`;
+        }
+        yearSelect.innerHTML = yearOptions;
+
+        if (id) {
+          document.getElementById("form-title").innerText = "Edit Project";
+          const p = window.projects.find((proj) => proj.id === id);
+          document.getElementById("proj-id").value = p.id;
+          document.getElementById("proj-title").value = p.title;
+          document.getElementById("proj-category").value = p.category;
+          document.getElementById("proj-year").value = p.year;
+          document.getElementById("proj-tech").value = p.tech.join(", ");
+          document.getElementById("proj-desc").value = p.description;
+          document.getElementById("proj-image-url").value = p.imageUrl || "";
+          document.getElementById("proj-gradient").value = p.gradient;
+        } else {
+          document.getElementById("form-title").innerText = "Add New Project";
+          document.getElementById("proj-id").value = "";
+          document.getElementById("proj-title").value = "";
+          document.getElementById("proj-category").value =
+            allUniqueCats[0] || "WEB APP";
+          document.getElementById("proj-year").value = currentYear.toString();
+          document.getElementById("proj-tech").value = "";
+          document.getElementById("proj-desc").value = "";
+          document.getElementById("proj-image-url").value = "";
+          document.getElementById("proj-gradient").value =
+            "from-[#1a1a24] to-[#0a0a0f]";
+        }
+        hideTechSuggestions();
+      }
+
+      function hideAdminForm() {
+        document.getElementById("admin-list-view").classList.remove("hidden");
+        document.getElementById("admin-form-view").classList.add("hidden");
+      }
+
+      function saveProject() {
+        const id = document.getElementById("proj-id").value;
+        const newProject = {
+          id: id ? parseInt(id) : Date.now(),
+          title:
+            document.getElementById("proj-title").value || "Untitled Project",
+          category: (
+            document.getElementById("proj-category").value || "UNCATEGORIZED"
+          ).toUpperCase(),
+          year:
+            document.getElementById("proj-year").value ||
+            new Date().getFullYear().toString(),
+          description: document.getElementById("proj-desc").value || "",
+          tech: document
+            .getElementById("proj-tech")
+            .value.split(",")
+            .map((t) => t.trim())
+            .filter((t) => t),
+          link: "#",
+          imageUrl: document.getElementById("proj-image-url").value || "",
+          gradient:
+            document.getElementById("proj-gradient").value ||
+            "from-[#1a1a1a] to-[#0a0a0a]",
+        };
+
+        if (id) {
+          const idx = window.projects.findIndex((p) => p.id === parseInt(id));
+          if (idx !== -1) window.projects[idx] = newProject;
+        } else {
+          window.projects.unshift(newProject);
+          if (!categories.includes(newProject.category)) {
+            categories.push(newProject.category);
+          }
+        }
+
+        hideAdminForm();
+        window.refreshUI();
+        showTemporarySaveStatus(
+          'Changes stored. Click "Publish to GitHub" to save live.',
+        );
+      }
+
+      function deleteProject(id) {
+        window.projects = window.projects.filter((p) => p.id !== id);
+        window.refreshUI();
+        showTemporarySaveStatus(
+          'Project removed. Click "Publish to GitHub" to save live.',
+        );
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        initApp();
+      });
+
+
+
+       
+
+    </script>
+   
+
+
+<script src="script.js"></script>
+
+
+  </body>
+</html>
