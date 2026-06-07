@@ -1,871 +1,1336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thenul Vidusitha - Projects</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thenul Vidusitha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Molle:ital@1&family=Quantico:ital,wght@0,400;0,700;1,400;1,700&family=Righteous&family=Zen+Dots&display=swap" rel="stylesheet">
+<!-- Font Awesome Free CDN Link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <style>
-        /* Custom Scrollbar Hiding & Selection */
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-        ::selection {
-            background-color: #d4ff00;
-            color: black;
-        }
-        
-        /* Smooth scrolling for anchor links */
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
+
+<link rel="stylesheet" href="style.css">
+<style>
+
+
+  /* ── HERO ── */
+  #hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:7rem 2rem 4rem;
+    position:relative;overflow:hidden;
+  }
+
+  .hero-bg{
+    position:absolute;inset:0;
+    background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(232,255,71,0.04) 0%,transparent 70%),
+               radial-gradient(ellipse 40% 50% at 20% 80%,rgba(34,211,238,0.04) 0%,transparent 60%);
+    pointer-events:none;
+  }
+
+  .grid-bg{
+    position:absolute;inset:0;
+    background-image:linear-gradient(var(--border) 1px,transparent 1px),
+                     linear-gradient(90deg,var(--border) 1px,transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,black 30%,transparent 100%);
+    pointer-events:none;opacity:0.4;
+  }
+
+  .hero-inner{max-width:1100px;margin:0 auto;width:100%}
+  .hero-badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--font-mono);font-size:0.78rem;
+    letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--accent);
+    border:1px solid rgba(232,255,71,0.25);
+    padding:0.4rem 0.9rem;border-radius:99px;
+    margin-bottom:2.5rem;
+    opacity:0;transform:translateY(20px);
+    animation:fadeUp 0.7s 0.2s ease forwards;
+  }
+  .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+
+  .hero-title{
+    font-family:var(--font-display);
+    font-size:clamp(1.5rem,8vw,4rem);
+    font-weight:800;line-height:0.95;
+    letter-spacing:-0.035em;
+    opacity:0;transform:translateY(30px);
+    animation:fadeUp 0.8s 0.4s ease forwards;
+  }
+  .hero-title .line2{display:block;color:transparent;
+    -webkit-text-stroke:1px rgba(244,244,245,0.3);
+    margin-left:0.4em;}
+  
+
+  /* ─── Typography Fade Animation ─── */
+.hero-title .accent {
+  color:var(--accent);
+  font-size:2.8rem;
+  font-weight:800;
+  margin-top:5rem;
+  display: inline-block; /* Required to allow transforms */
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Class added by JS to trigger the fade out */
+.hero-title .accent.is-hidden {
+  opacity: 0;
+  transform: translateY(10px); /* Drops slightly while fading out */
+}
+  .hero-sub{
+    margin-top:1rem;max-width:520px;
+    font-size:1.1rem;font-weight:300;
+    color:#a1a1aa;line-height:1.8;
+    font-style:italic;
+    opacity:0;transform:translateY(20px);
+    animation:fadeUp 0.8s 0.6s ease forwards;
+  }
+
+  .hero-actions{
+    display:flex;flex-wrap:wrap;gap:1rem;margin-top:3rem;
+    opacity:0;transform:translateY(20px);
+    animation:fadeUp 0.8s 0.8s ease forwards;
+  }
+  .btn-primary{
+    font-family:var(--font-mono);font-size:0.82rem;
+    letter-spacing:0.08em;text-transform:uppercase;
+    padding:0.85rem 2rem;background:var(--accent);
+    color:var(--bg);border:none;border-radius:99px;
+    cursor:pointer;text-decoration:none;
+    font-weight:600;
+    transition:transform 0.2s,box-shadow 0.2s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:var(--glow)}
+  .btn-ghost{
+    font-family:var(--font-mono);font-size:0.82rem;
+    letter-spacing:0.08em;text-transform:uppercase;
+    padding:0.85rem 2rem;background:transparent;
+    color:var(--muted);border:1px solid var(--border2);
+    border-radius:99px;cursor:pointer;text-decoration:none;
+    transition:color 0.2s,border-color 0.2s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-ghost:hover{color:var(--text);border-color:var(--border2)}
+
+  .hero-stats{
+    display:flex;flex-wrap:wrap;gap:3rem;margin-top:5rem;
+    align-content: center;justify-content: center;
+    opacity:0;transform:translateY(20px);
+    animation:fadeUp 0.8s 1s ease forwards;
+  }
+  .stat-num{
+    font-family:var(--font-display);font-size:2.8rem;
+    font-weight:800;color:var(--text);
+    letter-spacing:-0.04em;line-height:1;
+  }
+  .stat-num .plus{color:var(--accent)}
+  .stat-label{font-size:0.82rem;color:var(--muted);font-family:var(--font-mono);margin-top:4px;letter-spacing:0.05em}
+
+  .scroll-hint{
+    position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    opacity:0;animation:fadeUp 0.8s 1.4s ease forwards;
+  }
+  .scroll-hint span{font-family:var(--font-mono);font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted)}
+  .scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollDrop 2s 2s infinite}
+
+  /* ── SECTION BASE ── */
+  section{padding:7rem 2rem}
+  .container{max-width:1100px;margin:0 auto;width:100%}
+
+  .section-tag{
+    font-family:var(--font-mono);font-size:0.75rem;
+    letter-spacing:0.15em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:1rem;
+    display:flex;align-items:center;gap:10px;
+  }
+  .section-tag::before{content:'';width:30px;height:1px;background:var(--accent)}
+
+  .section-title{
+    font-family:var(--font-display);
+    font-size:clamp(2.2rem,5vw,3.8rem);
+    font-weight:800;line-height:1.05;
+    letter-spacing:-0.03em;margin-bottom:1.5rem;
+  }
+
+  /* ── ABOUT ── */
+  #about{background:var(--surface)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+  .about-img-wrap{position:relative}
+  .about-img-frame{
+    aspect-ratio:3/4;border-radius:var(--radius);
+    background:var(--surface2);
+    border:1px solid var(--border2);
+    overflow:hidden;position:relative;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .about-img-frame::before{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(135deg,rgba(232,255,71,0.08),transparent 50%,rgba(34,211,238,0.06));
+  }
+  .avatar-placeholder{
+    width:95%;height:95%;border-radius:50%;
+    background:var(--accent);color:var(--bg);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .avatar-placeholder img{
+    width:100%;height:100%;
+    border-radius: 2%;
+    object-fit:cover;
+    /* filter:grayscale(100%) 
+    brightness(1.2); */
+   }
+  .about-tag{
+    position:absolute;bottom:-0.5rem;right:-0.5rem;
+    background:var(--accent);color:var(--bg);
+    font-family:var(--font-mono);font-size:0.72rem;
+    letter-spacing:0.1em;
+    /* text-transform:uppercase; */
+    padding:0.6rem 1rem;border-radius:var(--radius);font-weight:600;
+    box-shadow:var(--glow);
+  }
+  .about-text p{color:#a1a1aa;margin-bottom:1.2rem;font-weight:300;font-style:italic}
+  .skill-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:2rem}
+  .chip{
+    font-family:var(--font-mono);font-size:0.72rem;
+    letter-spacing:0.06em;padding:0.35rem 0.85rem;
+    border:1px solid var(--border2);border-radius:99px;
+    color:var(--muted);transition:all 0.25s;
+  }
+  .chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+  .chip.highlight{border-color:rgba(232,255,71,0.35);color:var(--accent)}
+
+  /* ── WORK / PROJECTS ── */
+  #work{background:var(--bg)}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:1.5rem;margin-top:3.5rem}
+  .project-card{
+    background:var(--surface);border:1px solid var(--border);
+    border-radius:calc(var(--radius)*1.5);overflow:hidden;
+    position:relative;transition:transform 0.3s,border-color 0.3s;
+    cursor:pointer;
+  }
+  .project-card:hover{transform:translateY(-6px);border-color:var(--border2)}
+  .project-card.featured{grid-column:span 2}
+  .project-thumb{
+    aspect-ratio:16/9;background:var(--surface2);
+    position:relative;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .project-thumb-pattern{
+    position:absolute;inset:0;
+    background-image:linear-gradient(var(--border2) 1px,transparent 1px),
+                     linear-gradient(90deg,var(--border2) 1px,transparent 1px);
+    background-size:30px 30px;opacity:0.5;
+  }
+  .project-thumb-icon{
+    font-size:3rem;z-index:1;
+    filter:drop-shadow(0 0 20px currentColor);
+  }
+  .project-thumb-accent{
+    position:absolute;bottom:0;left:0;right:0;height:60%;
+    background:linear-gradient(to top,var(--surface),transparent);
+  }
+  .thumb-1{background:linear-gradient(135deg,#1a1a2e,#16213e)}
+  .thumb-2{background:linear-gradient(135deg,#0f2027,#203a43,#2c5364)}
+  .thumb-3{background:linear-gradient(135deg,#200122,#6f0000)}
+  .thumb-4{background:linear-gradient(135deg,#0f0c29,#302b63,#24243e)}
+  .project-body{padding:1.5rem}
+  .project-meta{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:0.7rem;
+  }
+  .project-type{
+    font-family:var(--font-mono);font-size:0.7rem;
+    letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);
+  }
+  .project-year{font-family:var(--font-mono);font-size:0.7rem;color:var(--muted)}
+  .project-title{
+    font-family:var(--font-display);font-size:1.35rem;
+    font-weight:700;letter-spacing:-0.02em;
+    margin-bottom:0.6rem;transition:color 0.2s;
+  }
+  .project-card:hover .project-title{color:var(--accent)}
+  .project-desc{font-size:0.9rem;color:#71717a;line-height:1.6;font-style:italic;font-weight:300}
+  .project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:1.2rem}
+  .project-tag{
+    font-family:var(--font-mono);font-size:0.68rem;
+    letter-spacing:0.06em;padding:0.25rem 0.65rem;
+    background:var(--surface2);border:1px solid var(--border);
+    border-radius:99px;color:var(--muted);
+  }
+  .project-link{
+    position:absolute;top:1rem;right:1rem;
+    width:36px;height:36px;border-radius:50%;
+    background:var(--surface2);border:1px solid var(--border2);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--muted);font-size:1rem;
+    transition:all 0.2s;opacity:0;
+  }
+  .project-card:hover .project-link{opacity:1;color:var(--accent);border-color:var(--accent)}
+
+  /* ── SKILLS / TECH ── */
+  #skills{background:var(--surface)}
+  .skills-layout{display:grid;grid-template-columns:1fr 2fr;gap:5rem;margin-top:3.5rem}
+  .skills-intro{color:#a1a1aa;font-style:italic;font-weight:300;line-height:1.8}
+  .tech-categories{display:flex;flex-direction:column;gap:2.5rem}
+  .tech-category-label{
+    font-family:var(--font-mono);font-size:0.72rem;
+    letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:1rem;
+  }
+  .tech-row{display:flex;flex-wrap:wrap;gap:10px}
+  .tech-item{
+    font-family:var(--font-mono);font-size:0.8rem;
+    padding:0.5rem 1rem;
+    background:var(--surface2);border:1px solid var(--border);
+    border-radius:var(--radius);color:var(--text);
+    transition:all 0.25s;position:relative;overflow:hidden;
+  }
+  .tech-item::before{
+    content:'';position:absolute;inset:0;
+    background:var(--accent);transform:scaleX(0);transform-origin:left;
+    transition:transform 0.3s ease;z-index:0;
+  }
+  .tech-item:hover::before{transform:scaleX(1)}
+  .tech-item span{position:relative;z-index:1;transition:color 0.3s}
+  .tech-item:hover span{color:var(--bg)}
+
+  /* ── WORK FILTERS ── */
+  .filter-bar{
+    display:flex;flex-wrap:wrap;gap:8px;
+    margin:2rem 0 3.5rem;
+    align-items:center;
+  }
+  .filter-label{
+    font-family:var(--font-mono);font-size:0.7rem;
+    letter-spacing:0.12em;text-transform:uppercase;
+    color:var(--muted);margin-right:4px;
+  }
+  .filter-btn{
+    font-family:var(--font-mono);font-size:0.75rem;
+    letter-spacing:0.07em;text-transform:uppercase;
+    padding:0.45rem 1.1rem;
+    background:transparent;
+    border:1px solid var(--border2);
+    border-radius:99px;color:var(--muted);
+    cursor:pointer;transition:all 0.22s ease;
+    position:relative;overflow:hidden;
+  }
+  .filter-btn::before{
+    content:'';position:absolute;inset:0;
+    background:var(--accent);
+    transform:translateY(100%);
+    transition:transform 0.22s ease;
+    z-index:0;border-radius:99px;
+  }
+  .filter-btn span{position:relative;z-index:1;transition:color 0.22s}
+  .filter-btn:hover{border-color:var(--accent);color:var(--accent)}
+  .filter-btn.active{border-color:var(--accent);color:var(--bg)}
+  .filter-btn.active::before{transform:translateY(0)}
+  .filter-btn.active span{color:var(--bg)}
+
+  .filter-count{
+    margin-left:auto;
+    font-family:var(--font-mono);font-size:0.7rem;
+    letter-spacing:0.1em;color:var(--muted);
+  }
+  .filter-count em{color:var(--accent);font-style:normal}
+
+  /* card hide/show */
+  .project-card{transition:transform 0.3s,border-color 0.3s,opacity 0.35s ease,scale 0.35s ease}
+  .project-card.filtered-out{
+    opacity:0;scale:0.96;pointer-events:none;
+    position:absolute;visibility:hidden;
+  }
+  .projects-grid{position:relative}
+
+  /* ── EXPERIENCE ── */
+  #experience{background:var(--bg)}
+  .timeline{margin-top:3.5rem;position:relative}
+  .timeline::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;
+    width:1px;background:linear-gradient(to bottom,var(--accent),transparent);
+  }
+  .timeline-item{padding-left:2.5rem;padding-bottom:3.5rem;position:relative}
+  .timeline-item::before{
+    content:'';position:absolute;left:-4px;top:6px;
+    width:9px;height:9px;border-radius:50%;
+    background:var(--accent);box-shadow:0 0 12px var(--accent);
+  }
+  .timeline-date{
+    font-family:var(--font-mono);font-size:0.72rem;
+    letter-spacing:0.1em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:0.5rem;
+  }
+  .timeline-role{
+    font-family:var(--font-display);font-size:1.3rem;
+    font-weight:700;letter-spacing:-0.02em;margin-bottom:0.25rem;
+  }
+  .timeline-company{color:var(--muted);font-family:var(--font-mono);font-size:0.85rem;margin-bottom:1rem}
+  .timeline-desc{color:#71717a;font-style:italic;font-weight:300;line-height:1.8;max-width:580px}
+  .timeline-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem}
+
+  /* ── CONTACT ── */
+  #contact{
+    background:var(--surface);
+    position:relative;overflow:hidden;
+  }
+  .contact-glow{
+    position:absolute;top:50%;left:50%;
+    width:600px;height:400px;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(ellipse,rgba(232,255,71,0.05),transparent 70%);
+    pointer-events:none;
+  }
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+  .contact-form{display:flex;flex-direction:column;gap:1.2rem}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .form-field{display:flex;flex-direction:column;gap:6px}
+  .form-field label{
+    font-family:var(--font-mono);font-size:0.72rem;
+    letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);
+  }
+  .form-field input,.form-field textarea,.form-field select{
+    background:var(--surface2);border:1px solid var(--border2);
+    border-radius:var(--radius);padding:0.85rem 1rem;
+    color:var(--text);font-family:var(--font-body);
+    font-size:0.92rem;font-style:italic;font-weight:300;
+    transition:border-color 0.2s,box-shadow 0.2s;
+    outline:none;resize:none;width:100%;
+  }
+  .form-field input:focus,.form-field textarea:focus{
+    border-color:var(--accent);
+    box-shadow:0 0 0 3px rgba(232,255,71,0.08);
+  }
+  .form-field textarea{min-height:130px}
+  .contact-info{color:#a1a1aa;line-height:1.8;font-style:italic;font-weight:300}
+  .contact-links{display:flex;flex-direction:column;gap:1rem;margin-top:2.5rem}
+  .contact-link{
+    display:flex;align-items:center;gap:12px;
+    font-family:var(--font-mono);font-size:0.85rem;
+    color:var(--muted);text-decoration:none;
+    padding:1rem 1.2rem;
+    background:var(--surface2);border:1px solid var(--border);
+    border-radius:var(--radius);
+    transition:all 0.25s;
+  }
+  .contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateX(6px)}
+  .contact-link .link-icon{font-size:1.1rem}
+  .contact-link .link-arrow{margin-left:auto;opacity:0;transition:opacity 0.2s}
+  .contact-link:hover .link-arrow{opacity:1}
+
+
+
+  /* Prevent standard text selection globally */
+body {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Allow text selection inside form inputs so they remain usable */
+input, textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* Security Popup Styling */
+.security-popup {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translate(-50%, 50px); /* Start slightly lower */
+  opacity: 0;
+  pointer-events: none;
+  background-color: rgba(200, 40, 40, 0.95);
+  backdrop-filter: blur(8px);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: monospace, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);
+  border: 1px solid rgba(255, 100, 100, 0.2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 99999;
+}
+
+/* Class added via JavaScript to trigger the animation */
+.security-popup.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+
+
+
+   /* ── RESPONSIVE ── */
+  @media(max-width:900px){
+    .about-grid,.contact-grid,.skills-layout{grid-template-columns:1fr}
+    .project-card.featured{grid-column:span 1}
+    .projects-grid{grid-template-columns:1fr}
+    .form-row{grid-template-columns:1fr}
+
+    .filter-bar {
+    justify-content: flex-start;
+  }
+  .filter-count {
+    margin-left: 0;
+    width: 100%;
+    margin-top: 0.75rem;
+  }
+
+  }
+
+
+    /* ── HERO ACCENT TEXT RESPONSIVENESS (MOBILE & TABLET) ── */
+@media (max-width: 768px) {
+
+  #popup-overlay {
+    padding: 1rem;
+  }
+
+  .hero-title .accent {
+    /* Shrinks dynamically based on screen width, between 1.5rem and 2.8rem */
+    font-size: clamp(1.5rem, 6.5vw, 2.8rem); 
+    
+    /* Forces the text to stay on a single line */
+    white-space: nowrap; 
+    
+  }
+}
+
+
+
+
+
+
+
+   @media(max-width:600px){
+    section{padding:5rem 1.25rem}
+
+    .scroll-hint{
+    left:45%;
+
+    .filter-bar {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 0.5rem;
+    scrollbar-width: none; /* Hides scrollbar in Firefox */
+  }
+  
+  .filter-bar::-webkit-scrollbar {
+    display: none; /* Hides scrollbar in Chrome/Safari/Edge */
+  }
+  
+  .filter-label {
+    display: none; /* Hides "Filter:" label to save space */
+  }
+  
+  .filter-btn {
+    flex: 0 0 auto; /* Prevents buttons from shrinking */
+    white-space: nowrap;
+  }
+  
+  .filter-count {
+    display: none; /* Hides the project count on small mobile screens to prioritize the buttons */
+  }
+  }
+
+
+  /* Shrink inner padding for the body */
+  .popup-body {
+    padding: 1.5rem 1.2rem 1.2rem;
+  }
+
+  /* Adjust the close button so it doesn't overlap on small screens */
+  .popup-close {
+    top: 0.8rem;
+    right: 0.8rem;
+    width: 28px;
+    height: 28px;
+    font-size: 0.85rem;
+  }
+
+  /* Scale down the title */
+  .popup-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.6rem;
+  }
+
+  /* Scale down the description text slightly */
+  .popup-desc {
+    font-size: 0.85rem;
+    margin-bottom: 1.4rem;
+  }
+
+  /* Stack the action buttons vertically instead of wrapping side-by-side */
+  .popup-actions {
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  
+  .popup-btn-primary, 
+  .popup-btn-ghost {
+    width: 100%;
+    min-width: unset;
+  }
+
+  /* Stack the footer elements vertically */
+  .popup-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem 1.2rem;
+    gap: 0.8rem;
+  }
+
+   
+
+
+  }
+
+
+
+
+
+
+
+
+</style>
 </head>
-<body class="min-h-screen bg-[#050505] text-white font-sans overflow-x-hidden">
+<body>
+
+  <!-- DevTools Warning Screen -->
+  <div id="security-popup" class="security-popup">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+    <path d="M12 8v4"></path>
+    <path d="M12 16h.01"></path>
+  </svg>
+  <span>ACTION DISABLED</span>
+</div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-grid"></div>
+  <div class="loader-corner tl"></div>
+  <div class="loader-corner tr"></div>
+  <div class="loader-corner bl"></div>
+  <div class="loader-corner br"></div>
+  <div class="loader-logo">
+    <span>T</span><span>h</span><span>e</span><span>n</span><span>u</span><span>l</span><span class="loader-accent-char">&nbsp;</span><span>V</span><span>i</span><span>d</span><span>u</span><span>s</span><span>i</span><span>t</span><span>h</span><span>a</span>
+  </div>
+  <div class="loader-bar-wrap">
+    <div class="loader-track"><div class="loader-fill" id="loaderFill"></div></div>
+    <div class="loader-meta">
+      <span class="loader-status" id="loaderStatus">Initialising</span>
+      <span class="loader-pct" id="loaderPct">0%</span>
+    </div>
+  </div>
+</div>
+
+<!-- CURSOR -->
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- POPUP CARD -->
+<!-- <div id="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="popup-heading">
+  <div id="popup-card">
+    <div class="popup-stripe"></div>
+    <div class="popup-body">
+      <button class="popup-close" id="popupClose" aria-label="Close">✕</button>
+      <div class="popup-avatar">AC</div>
+      <div class="popup-eyebrow"><span class="pulse-dot"></span> Available for hire</div>
+      <h2 class="popup-title" id="popup-heading">Let's build something <span class="hl">remarkable.</span></h2>
+      <p class="popup-desc">Hi, I'm Alex — a full-stack engineer specialising in high-performance web apps and distributed systems. I'm currently open to new projects and full-time roles starting Q3 2025.</p>
+      <div class="popup-actions">
+        <a class="popup-btn-primary" href="#contact">Work with me →</a>
+        <a class="popup-btn-ghost" href="projects.html">View my work</a>
+      </div>
+    </div>
+    <div class="popup-footer">
+      <span class="popup-footer-text">Based in San Francisco · Remote-friendly</span>
+      <span class="popup-footer-badge">Open to work</span>
+    </div>
+  </div>
+</div> -->
+
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">thenul vidusitha</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="projects.html">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Hire me</a>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="menu-close">About</a>
+  <a href="projects.html" class="menu-close">Work</a>
+  <a href="#skills" class="menu-close">Skills</a>
+  <a href="#experience" class="menu-close">Experience</a>
+  <a href="#contact" class="menu-close">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="dot"></span> Available for new projects</div>
+    <h1 class="hero-title">
+      Thenul<br>
+      <span class="line2">Vidusitha</span><br>
+      <span class="accent">ENGINEER.</span>
+    </h1>
+    <p class="hero-sub">Building scalable digital products at the intersection of design and engineering. I turn complex problems into elegant, performant solutions.</p>
+    <div class="hero-actions">
+      <a href="projects.html" class="btn-primary">View my work →</a>
+      <a href="#contact" class="btn-ghost">Let's talk ↗</a>
+    </div>
     
-    <!-- Background Glow -->
-    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-[800px] max-w-full h-[400px] bg-[#d4ff00]/5 blur-[100px] md:blur-[150px] rounded-full pointer-events-none z-0"></div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
 
-    <div class="relative z-10">
-        <!-- Navigation -->
-        <nav id="nav-bar" class="flex justify-between items-center p-4 sm:p-6 lg:px-12 transition-all duration-1000 transform -translate-y-10 opacity-0 relative z-50">
-            <div class="text-[#d4ff00] font-black text-lg sm:text-xl tracking-tighter relative z-50">
-                thenulvidusitha
-            </div>
-            
-            <!-- Desktop Links -->
-            <div class="hidden md:flex gap-8 text-xs tracking-widest text-gray-400 font-medium">
-                <a href="#" class="hover:text-white transition-colors">ABOUT</a>
-                <a href="#" class="text-white">WORK</a>
-                <a href="#" class="hover:text-white transition-colors">SKILLS</a>
-                <a href="#" class="hover:text-white transition-colors">EXPERIENCE</a>
-                <a href="#" class="hover:text-white transition-colors">CONTACT</a>
-            </div>
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item">After Effects<span class="dot"></span></div>
+    <div class="marquee-item">Premiere Pro<span class="dot"></span></div>
+    <div class="marquee-item">Photoshop<span class="dot"></span></div>
+    <div class="marquee-item">Illustrator<span class="dot"></span></div>
+    <div class="marquee-item">Lightroom<span class="dot"></span></div>
+    <div class="marquee-item">Audition<span class="dot"></span></div>
+    <div class="marquee-item">DaVinci Resolve<span class="dot"></span></div>
+    <div class="marquee-item">Blender<span class="dot"></span></div>
+    <div class="marquee-item">Canva<span class="dot"></span></div>
+    <div class="marquee-item">HTML<span class="dot"></span></div>
+    <div class="marquee-item">CSS<span class="dot"></span></div>
+    <div class="marquee-item">JavaScript<span class="dot"></span></div>
+    <div class="marquee-item">SQL<span class="dot"></span></div>
+    <div class="marquee-item">JAVA<span class="dot"></span></div>
+    <div class="marquee-item">C++<span class="dot"></span></div>
+    <div class="marquee-item">Arduino<span class="dot"></span></div>
+    
+    <div class="marquee-item">After Effects<span class="dot"></span></div>
+    <div class="marquee-item">Premiere Pro<span class="dot"></span></div>
+    <div class="marquee-item">Photoshop<span class="dot"></span></div>
+    <div class="marquee-item">Illustrator<span class="dot"></span></div>
+    <div class="marquee-item">Lightroom<span class="dot"></span></div>
+    <div class="marquee-item">Audition<span class="dot"></span></div>
+    <div class="marquee-item">DaVinci Resolve<span class="dot"></span></div>
+    <div class="marquee-item">Blender<span class="dot"></span></div>
+    <div class="marquee-item">Canva<span class="dot"></span></div>
+    <div class="marquee-item">HTML<span class="dot"></span></div>
+    <div class="marquee-item">CSS<span class="dot"></span></div>
+    <div class="marquee-item">JavaScript<span class="dot"></span></div>
+    <div class="marquee-item">SQL<span class="dot"></span></div>
+    <div class="marquee-item">JAVA<span class="dot"></span></div>
+    <div class="marquee-item">C++<span class="dot"></span></div>
+    <div class="marquee-item">Arduino<span class="dot"></span></div>
+    
+  </div>
+</div>
 
-            <div class="flex items-center gap-4 relative z-50">
-                <button class="hidden sm:block border border-[#d4ff00] text-[#d4ff00] px-6 py-2.5 rounded-full text-xs font-bold tracking-widest hover:bg-[#d4ff00] hover:text-black transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,255,0,0.3)]">
-                    HIRE ME
-                </button>
-                <!-- Mobile Menu Toggle -->
-                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="md:hidden text-white hover:text-[#d4ff00] p-2 transition-colors focus:outline-none">
-                    <i data-lucide="menu" class="w-6 h-6"></i>
-                </button>
-            </div>
-
-            <!-- Mobile Menu Overlay -->
-            <div id="mobile-menu" class="fixed inset-0 bg-[#050505]/95 backdrop-blur-lg z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-all duration-300 md:hidden">
-                <a href="#" class="text-2xl sm:text-3xl font-black tracking-widest text-white hover:text-[#d4ff00] transition-colors mobile-link">ABOUT</a>
-                <a href="#" class="text-2xl sm:text-3xl font-black tracking-widest text-[#d4ff00] transition-colors mobile-link">WORK</a>
-                <a href="#" class="text-2xl sm:text-3xl font-black tracking-widest text-white hover:text-[#d4ff00] transition-colors mobile-link">SKILLS</a>
-                <a href="#" class="text-2xl sm:text-3xl font-black tracking-widest text-white hover:text-[#d4ff00] transition-colors mobile-link">EXPERIENCE</a>
-                <a href="#" class="text-2xl sm:text-3xl font-black tracking-widest text-white hover:text-[#d4ff00] transition-colors mobile-link">CONTACT</a>
-                <button class="border border-[#d4ff00] text-[#d4ff00] px-8 py-3 rounded-full text-sm font-bold tracking-widest hover:bg-[#d4ff00] hover:text-black transition-all duration-300 shadow-[0_0_20px_rgba(212,255,0,0.3)] mt-6 mobile-link">
-                    HIRE ME
-                </button>
-            </div>
-        </nav>
-
-        <main class="max-w-[1600px] mx-auto w-full">
-            <!-- Header Section -->
-            <header id="header-section" class="relative z-40 px-4 sm:px-6 lg:px-12 mt-8 sm:mt-16 mb-8 sm:mb-12 transition-all duration-1000 delay-100 transform translate-y-10 opacity-0">
-                <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter mb-8 sm:mb-12 leading-[1.1] sm:leading-[0.9]">
-                    Projects that <br class="sm:hidden" /> <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">matter.</span>
-                </h1>
-
-                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 border-b border-white/10 pb-6">
-                    <div class="flex flex-row gap-4 w-full lg:w-auto z-30 relative">
-                        <!-- Category Dropdown -->
-                        <div class="relative filter-dropdown-container">
-                            <button onclick="toggleDropdown('category-menu')" class="flex items-center gap-2 text-[10px] sm:text-xs font-bold tracking-widest text-white bg-[#0f0f0f] border border-white/10 px-4 py-2.5 rounded-full hover:border-[#d4ff00]/50 transition-colors focus:outline-none">
-                                <span class="text-gray-500 uppercase">Category:</span> 
-                                <span id="selected-category" class="text-[#d4ff00]">ALL</span>
-                                <i data-lucide="chevron-down" class="w-4 h-4 ml-1 text-gray-400"></i>
-                            </button>
-                            <div id="category-menu" class="absolute z-50 top-full left-0 mt-2 w-48 bg-[#0f0f0f] border border-white/10 rounded-2xl shadow-2xl opacity-0 pointer-events-none transition-all duration-200 transform -translate-y-2 overflow-hidden backdrop-blur-xl">
-                                <!-- Category Filters injected by JS -->
-                            </div>
-                        </div>
-
-                        <!-- Year Dropdown -->
-                        <div class="relative filter-dropdown-container">
-                            <button onclick="toggleDropdown('year-menu')" class="flex items-center gap-2 text-[10px] sm:text-xs font-bold tracking-widest text-white bg-[#0f0f0f] border border-white/10 px-4 py-2.5 rounded-full hover:border-[#d4ff00]/50 transition-colors focus:outline-none">
-                                <span class="text-gray-500 uppercase">Year:</span> 
-                                <span id="selected-year" class="text-[#d4ff00]">ALL</span>
-                                <i data-lucide="chevron-down" class="w-4 h-4 ml-1 text-gray-400"></i>
-                            </button>
-                            <div id="year-menu" class="absolute z-50 top-full left-0 mt-2 w-32 bg-[#0f0f0f] border border-white/10 rounded-2xl shadow-2xl opacity-0 pointer-events-none transition-all duration-200 transform -translate-y-2 overflow-hidden backdrop-blur-xl">
-                                <!-- Year Filters injected by JS -->
-                            </div>
-                        </div>
-                    </div>
-                    <div id="project-count" class="text-[10px] sm:text-xs text-gray-500 font-mono tracking-widest shrink-0 mt-2 lg:mt-0 lg:pb-2">
-                        <!-- Count injected by JS -->
-                    </div>
-                </div>
-            </header>
-
-            <!-- Projects Grid -->
-            <section class="px-4 sm:px-6 lg:px-12 pb-16 sm:pb-24">
-                <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                    <!-- Project Cards injected by JS -->
-                </div>
-            </section>
-        </main>
-
-        <!-- Footer -->
-        <footer class="border-t border-white/10 mt-8 py-8 sm:py-12 px-4 sm:px-6 lg:px-12 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 text-center sm:text-left">
-            <div class="text-[#d4ff00] font-black text-lg sm:text-xl tracking-tighter opacity-50">
-                thenulvidusitha
-            </div>
-            <p class="text-gray-600 text-[10px] sm:text-xs tracking-widest font-mono uppercase">
-                © <span id="year" class="cursor-pointer hover:text-[#d4ff00] transition-colors" onclick="openPasswordModal()" title="Admin Login"></span> All rights reserved.
-            </p>
-        </footer>
-    </div>
-
-    <!-- Admin Modals -->
-    <div id="password-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden flex items-center justify-center opacity-0 transition-opacity duration-300 p-4">
-        <div class="bg-[#0f0f0f] p-6 sm:p-8 rounded-2xl border border-white/10 w-full max-w-sm transform scale-95 transition-transform duration-300" id="password-modal-content">
-            <h2 class="text-xl sm:text-2xl font-bold mb-6 text-white">Admin Access</h2>
-            <input type="password" id="admin-password" class="w-full bg-black border border-white/20 rounded-lg p-3 text-white focus:border-[#d4ff00] outline-none mb-2 transition-colors" placeholder="Enter password" onkeydown="if(event.key === 'Enter') checkPassword()">
-            <p id="password-error" class="text-red-500 text-xs mb-4 hidden font-mono">Incorrect password</p>
-            <div class="flex gap-3 sm:gap-4 mt-6">
-                <button onclick="closePasswordModal()" class="flex-1 px-4 py-2.5 rounded-full border border-white/10 text-gray-400 hover:text-white transition-colors text-xs sm:text-sm font-bold">Cancel</button>
-                <button onclick="checkPassword()" class="flex-1 px-4 py-2.5 rounded-full bg-[#d4ff00] text-black font-bold hover:shadow-[0_0_15px_rgba(212,255,0,0.3)] transition-all text-xs sm:text-sm">Login</button>
-            </div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img-wrap reveal">
+        <div class="about-img-frame">
+          <div class="avatar-placeholder"><img src="1.png" alt=""></div>
+          <div class="about-tag">@thenul_vidusitha</div>
         </div>
-    </div>
-
-    <div id="admin-panel" class="fixed inset-0 bg-[#050505] z-[90] hidden overflow-y-auto opacity-0 transition-opacity duration-500">
-        <div class="max-w-5xl mx-auto p-4 sm:p-6 lg:p-12 relative min-h-screen pb-24 sm:pb-32 mt-4 sm:mt-0">
-            <div class="flex justify-between items-center mb-8 sm:mb-12 border-b border-white/10 pb-4 sm:pb-6">
-                <div>
-                    <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-white">Dashboard <span class="text-[#d4ff00]">Admin</span></h1>
-                    <p class="text-gray-500 text-[10px] sm:text-sm mt-1 sm:mt-2 font-mono tracking-widest uppercase">Manage your portfolio</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button onclick="exportSourceCode()" class="text-gray-400 hover:text-[#d4ff00] p-2 sm:px-4 py-2 rounded-full hover:bg-white/5 transition-colors focus:outline-none flex items-center gap-2 text-xs font-bold border border-transparent hover:border-white/10" title="Download updated HTML file">
-                        <i data-lucide="download" class="w-5 h-5"></i> <span class="hidden sm:inline">Export HTML</span>
-                    </button>
-                    <button onclick="closeAdminPanel()" class="text-gray-400 hover:text-[#d4ff00] p-2 sm:p-3 rounded-full hover:bg-white/5 transition-colors focus:outline-none">
-                        <i data-lucide="x" class="w-6 h-6"></i>
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Project List View -->
-            <div id="admin-list-view">
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4">
-                    <div class="flex items-center gap-4">
-                        <h2 class="text-lg sm:text-xl font-bold text-white">All Projects</h2>
-                        <span id="save-status" class="text-xs text-gray-500 font-mono hidden items-center gap-1.5 bg-white/5 px-3 py-1.5 rounded-full">
-                            <!-- Status updated by JS -->
-                        </span>
-                    </div>
-                    <button onclick="showAdminForm()" class="w-full sm:w-auto bg-[#d4ff00] text-black px-6 py-2.5 rounded-full font-bold text-sm hover:scale-105 transition-transform shadow-[0_0_15px_rgba(212,255,0,0.2)] flex items-center justify-center gap-2">
-                        <i data-lucide="plus" class="w-4 h-4"></i> New Project
-                    </button>
-                </div>
-                <div id="admin-projects-list" class="flex flex-col gap-3"></div>
-            </div>
-
-            <!-- Form View -->
-            <div id="admin-form-view" class="hidden bg-[#0a0a0a] border border-white/10 rounded-2xl p-4 sm:p-6 md:p-8">
-                <h2 id="form-title" class="text-xl sm:text-2xl font-bold mb-6 sm:mb-8 text-white border-b border-white/10 pb-4">Add Project</h2>
-                <input type="hidden" id="proj-id">
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6">
-                    <div>
-                        <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-semibold">Project Title</label>
-                        <input type="text" id="proj-title" class="w-full bg-black border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#d4ff00] outline-none transition-colors">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-semibold">Category</label>
-                        <select id="proj-category" style="color-scheme: dark;" class="w-full bg-black border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#d4ff00] outline-none transition-colors cursor-pointer">
-                            <!-- Options injected by JS -->
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-semibold">Year</label>
-                        <select id="proj-year" style="color-scheme: dark;" class="w-full bg-black border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#d4ff00] outline-none transition-colors cursor-pointer">
-                            <!-- Options injected by JS -->
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-semibold">Tech Stack (comma separated)</label>
-                        <input type="text" id="proj-tech" class="w-full bg-black border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#d4ff00] outline-none transition-colors" placeholder="React, Node.js, Tailwind">
-                    </div>
-                </div>
-                
-                <div class="mb-6">
-                    <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-semibold">Description</label>
-                    <textarea id="proj-desc" rows="4" class="w-full bg-black border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#d4ff00] outline-none transition-colors"></textarea>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8 bg-black/50 p-4 sm:p-6 rounded-xl border border-white/5">
-                    <div>
-                        <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-semibold">Image URL</label>
-                        <input type="text" id="proj-image-url" class="w-full bg-black border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#d4ff00] outline-none transition-colors" placeholder="https://example.com/image.jpg">
-                    </div>
-                    <div>
-                        <label class="block text-[10px] sm:text-xs text-gray-500 mb-2 uppercase tracking-widest font-semibold">Background Gradient (Fallback)</label>
-                        <input type="text" id="proj-gradient" class="w-full bg-black border border-white/10 rounded-lg p-3 text-sm text-white focus:border-[#d4ff00] outline-none transition-colors" placeholder="from-[#1a1a24] to-[#0a0a0f]">
-                    </div>
-                </div>
-
-                <div class="flex flex-col-reverse sm:flex-row justify-end gap-3 sm:gap-4 border-t border-white/10 pt-6">
-                    <button onclick="hideAdminForm()" class="w-full sm:w-auto px-6 py-2.5 rounded-full border border-white/10 text-gray-400 hover:text-white transition-colors font-bold text-sm">Cancel</button>
-                    <button onclick="saveProject()" class="w-full sm:w-auto px-8 py-2.5 rounded-full bg-[#d4ff00] text-black font-bold hover:shadow-[0_0_15px_rgba(212,255,0,0.3)] transition-all text-sm">Save Project</button>
-                </div>
-            </div>
+      </div>
+      <div class="about-text">
+        <div class="section-tag reveal">About me</div>
+        <h2 class="section-title reveal">Engineering.</h2>
+        <p class="reveal">I'm a full-stack engineer with 6 years of experience building products that scale. My work sits at the convergence of robust backend architecture and pixel-perfect frontend craft.</p>
+        <p class="reveal reveal-delay-1">Before going independent, I led engineering at two YC-backed startups — shipping products used by hundreds of thousands of people. I believe the best software is invisible: fast, reliable, and a joy to use.</p>
+        <p class="reveal reveal-delay-2">When I'm not coding, you'll find me contributing to open source, writing about distributed systems, or hiking the trails around Marin County.</p>
+        <div class="skill-chips reveal reveal-delay-3">
+          <span class="chip">Problem Solver</span>
+          <span class="chip highlight">System Design</span>
+          <span class="chip highlight">Video Editor</span>
+          <span class="chip highlight">Animator</span>
+          <span class="chip">Graphic Designer</span>
+          <span class="chip highlight">Developer</span>
+          <span class="chip">Youtuber</span>
+          <span class="chip">Tech Enthusiast</span>
+          <span class="chip highlight">Innovator</span>
+          <span class="chip">Open Source Contributor</span>
+          <span class="chip">Lifelong Learner</span>
+          <span class="chip">AI Explorer</span>
+          <span class="chip">Remote Worker</span>
+          <span class="chip highlight">Tech Blogger</span>
         </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Centralized Projects Data -->
-    <script id="portfolio-data">
-        window.projects = [
-            {
-                "id": 1,
-                "title": "VoltFlow — Real-time Analytics",
-                "category": "WEB APP",
-                "year": "2024",
-                "description": "A high-throughput data pipeline and visualization platform processing 50M+ events per day. Built with React, WebSockets, and a distributed backend.",
-                "tech": ["React", "WebSockets", "ClickHouse", "Node.js"],
-                "link": "#",
-                "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
-                "gradient": "from-[#1a1a24] to-[#0a0a0f]"
-            },
-            {
-                "id": 2,
-                "title": "Tideline CMS",
-                "category": "SAAS",
-                "year": "2024",
-                "description": "Headless CMS with a real-time collaborative editor. Think Notion meets Contentful — built for developer-first teams.",
-                "tech": ["Next.js", "Prisma", "PostgreSQL"],
-                "link": "#",
-                "imageUrl": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
-                "gradient": "from-[#101827] to-[#0a0a0f]"
-            },
-            {
-                "id": 3,
-                "title": "Neon Nights - Music Video",
-                "category": "VIDEO",
-                "year": "2023",
-                "description": "A cyberpunk-inspired music video featuring heavy VFX, 3D compositing, and dynamic color grading.",
-                "tech": ["Premiere Pro", "After Effects", "Blender"],
-                "link": "#",
-                "imageUrl": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=800&auto=format&fit=crop",
-                "gradient": "from-[#251027] to-[#0a0a0f]"
-            },
-            {
-                "id": 4,
-                "title": "Aura Brand Identity",
-                "category": "DESIGN",
-                "year": "2023",
-                "description": "Complete visual identity, logo design, and brand guidelines for a modern wellness startup.",
-                "tech": ["Illustrator", "Figma", "Photoshop"],
-                "link": "#",
-                "imageUrl": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=800&auto=format&fit=crop",
-                "gradient": "from-[#271018] to-[#0a0a0f]"
-            },
-            {
-                "id": 5,
-                "title": "Crypto Dashboard UI",
-                "category": "DESIGN",
-                "year": "2024",
-                "description": "Sleek, dark-mode focused user interface design for a decentralized finance trading platform.",
-                "tech": ["Figma", "Prototyping"],
-                "link": "#",
-                "imageUrl": "https://images.unsplash.com/photo-1605792657660-596af9009e82?q=80&w=800&auto=format&fit=crop",
-                "gradient": "from-[#10271c] to-[#0a0a0f]"
-            },
-            {
-                "id": 6,
-                "title": "Motion Reel 2024",
-                "category": "VIDEO",
-                "year": "2024",
-                "description": "A compilation of my best motion graphics and 3D animation work from the past year.",
-                "tech": ["After Effects", "Cinema 4D"],
-                "link": "#",
-                "imageUrl": "https://images.unsplash.com/photo-1536240478700-b869070f9279?q=80&w=800&auto=format&fit=crop",
-                "gradient": "from-[#271c10] to-[#0a0a0f]"
-            }
-        ];
-    </script>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num" data-target="3" data-suffix="+">0<span class="plus">+</span></div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num" data-target="42" data-suffix="+">0<span class="plus">+</span></div>
+        <div class="stat-label">Projects Shipped</div>
+      </div>
+      <div>
+        <div class="stat-num" data-target="12" data-suffix="+">0<span class="plus">+</span></div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+      <div>
+        <div class="stat-num" data-target="99" data-suffix="%">0<span class="plus">%</span></div>
+        <div class="stat-label">Client Satisfaction</div>
+      </div>
+    </div>
 
-    <!-- Application UI Logic -->
-    <script>
-        const categories = ["ALL", "SAAS", "WEB APP", "VIDEO", "DESIGN"];
-        let activeCategory = "ALL";
-        let activeYear = "ALL";
-        let isMobileMenuOpen = false;
-        let activeDropdown = null;
-        let appInitialized = false;
+  </div>
+</section>
 
-        function initApp() {
-            if (appInitialized) return;
-            appInitialized = true;
+<!-- WORK -->
+<section id="work">
+  <div class="container">
+    <div class="section-tag reveal">Selected work</div>
+    <h2 class="section-title reveal">Projects that matter.</h2>
 
-            // Set current year in footer
-            document.getElementById('year').textContent = new Date().getFullYear();
+    <!-- Filter bar -->
+    <div class="filter-bar reveal">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" data-filter="all"><span>All</span></button>
+      <button class="filter-btn" data-filter="web-app"><span>Web App</span></button>
+      <button class="filter-btn" data-filter="mobile"><span>Videos</span></button>
+      <span class="filter-count"><em id="visibleCount">4</em> / 4 projects</span>
+    </div>
 
-            // Initialize filters
-            renderFilters();
-            
-            // Initial render of projects
-            renderProjects();
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Featured -->
+      <div class="project-card featured reveal" tabindex="0" data-category="saas">
+        <div class="project-thumb thumb-1">
+          <div class="project-thumb-pattern"></div>
+          <div class="project-thumb-icon">⚡</div>
+          <div class="project-thumb-accent"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-type">SaaS Platform</span>
+            <span class="project-year">2024</span>
+          </div>
+          <div class="project-title">VoltFlow — Real-time Analytics Dashboard</div>
+          <div class="project-desc">A high-throughput data pipeline and visualization platform processing 50M+ events per day. Built with React, WebSockets, ClickHouse, and a distributed Node.js backend.</div>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">WebSockets</span>
+            <span class="project-tag">ClickHouse</span>
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">Kubernetes</span>
+          </div>
+        </div>
+        <div class="project-link">↗</div>
+      </div>
 
-            // Trigger entrance animations shortly after load
-            setTimeout(() => {
-                document.getElementById('nav-bar').classList.remove('-translate-y-10', 'opacity-0');
-                document.getElementById('header-section').classList.remove('translate-y-10', 'opacity-0');
-            }, 100);
+      <div class="project-card reveal reveal-delay-1" tabindex="0" data-category="web-app">
+        <div class="project-thumb thumb-2">
+          <div class="project-thumb-pattern"></div>
+          <div class="project-thumb-icon">🌊</div>
+          <div class="project-thumb-accent"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-type">Web App</span>
+            <span class="project-year">2024</span>
+          </div>
+          <div class="project-title">Tideline CMS</div>
+          <div class="project-desc">Headless CMS with a real-time collaborative editor. Think Notion meets Contentful — built for developer-first teams.</div>
+          <div class="project-tags">
+            <span class="project-tag">Next.js</span>
+            <span class="project-tag">Prisma</span>
+            <span class="project-tag">PostgreSQL</span>
+          </div>
+        </div>
+        <div class="project-link">↗</div>
+      </div>
 
-            // Add event listeners to mobile links
-            document.querySelectorAll('.mobile-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    if(isMobileMenuOpen) toggleMobileMenu();
-                });
-            });
+      <div class="project-card reveal reveal-delay-2" tabindex="0" data-category="mobile">
+        <div class="project-thumb thumb-3">
+          <div class="project-thumb-pattern"></div>
+          <div class="project-thumb-icon">🔥</div>
+          <div class="project-thumb-accent"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-type">Mobile / API</span>
+            <span class="project-year">2023</span>
+          </div>
+          <div class="project-title">Ember Finance</div>
+          <div class="project-desc">Personal finance app with AI-powered spending insights. Aggregates data from 4000+ institutions via Plaid integration.</div>
+          <div class="project-tags">
+            <span class="project-tag">React Native</span>
+            <span class="project-tag">Python</span>
+            <span class="project-tag">Plaid</span>
+          </div>
+        </div>
+        <div class="project-link">↗</div>
+      </div>
 
-            // Close dropdowns when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!e.target.closest('.filter-dropdown-container')) {
-                    closeAllDropdowns();
-                }
-            });
+      <div class="project-card reveal reveal-delay-1" tabindex="0" data-category="open-source">
+        <div class="project-thumb thumb-4">
+          <div class="project-thumb-pattern"></div>
+          <div class="project-thumb-icon">🔮</div>
+          <div class="project-thumb-accent"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-type">Open Source</span>
+            <span class="project-year">2023</span>
+          </div>
+          <div class="project-title">Prism UI — Component Library</div>
+          <div class="project-desc">A zero-dependency, fully accessible component library for React. 3.2k GitHub stars and growing.</div>
+          <div class="project-tags">
+            <span class="project-tag">React</span>
+            <span class="project-tag">TypeScript</span>
+            <span class="project-tag">Storybook</span>
+          </div>
+        </div>
+        <div class="project-link">↗</div>
+      </div>
+    </div>
+
+
+    <div class="hero-actions">
+      <a href="projects.html" class="btn-primary">View my work →</a>
+    </div>
+
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-tag reveal">Tech stack</div>
+    <h2 class="section-title reveal">Tools of the trade.</h2>
+    <div class="skills-layout">
+      <div class="reveal">
+        <p class="skills-intro">Six years of building across the stack has given me deep roots in a few key areas — and the flexibility to pick up whatever a project demands.</p>
+        <br>
+        <p class="skills-intro">I believe strongly in choosing boring technology where it counts, and reaching for the sharp edge only when it earns its complexity.</p>
+      </div>
+      <div class="tech-categories reveal reveal-delay-1">
+
+         <div>
+          <div class="tech-category-label">Video & Animation</div>
+          <div class="tech-row">
+            <div class="tech-item"><span>After Effects</span></div>
+            <div class="tech-item"><span>Premiere Pro</span></div>
+            <div class="tech-item"><span>Blender</span></div>
+            <div class="tech-item"><span>DaVinci Resolve</span></div>
+            <div class="tech-item"><span>CapCut</span></div>
+            <div class="tech-item"><span>Filmora</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="tech-category-label">Graphics & Design</div>
+          <div class="tech-row">
+            <div class="tech-item"><span>Photoshop</span></div>
+            <div class="tech-item"><span>Illustrator</span></div>
+            <div class="tech-item"><span>Canva</span></div>
+            <div class="tech-item"><span>Gimp</span></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="tech-category-label">Frontend</div>
+          <div class="tech-row">
+            <div class="tech-item"><span>HTML</span></div>
+            <div class="tech-item"><span>CSS</span></div>
+            <div class="tech-item"><span>JavaScript</span></div>
+            <div class="tech-item"><span>Tailwind</span></div>
+            <div class="tech-item"><span>F</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="tech-category-label">Backend & Databases</div>
+          <div class="tech-row">
+            <div class="tech-item"><span>Java</span></div>
+            <div class="tech-item"><span>C++</span></div>
+            <div class="tech-item"><span>SQL</span></div>
+          </div>
+        </div>
+       
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-tag reveal">Career</div>
+    <h2 class="section-title reveal">Where I've worked.</h2>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-date">2022 — Present</div>
+        <div class="timeline-role">Senior Full-Stack Engineer</div>
+        <div class="timeline-company">Independent / Freelance · Remote</div>
+        <div class="timeline-desc">Building bespoke digital products for venture-backed startups and established enterprises. Specialising in high-traffic web applications and data-intensive platforms.</div>
+        <div class="timeline-chips">
+          <span class="chip highlight">React</span>
+          <span class="chip highlight">Node.js</span>
+          <span class="chip">AWS</span>
+        </div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-1">
+        <div class="timeline-date">2020 — 2022</div>
+        <div class="timeline-role">Lead Engineer</div>
+        <div class="timeline-company">Luminary (YC W20) · San Francisco, CA</div>
+        <div class="timeline-desc">Led a team of 5 engineers building the core product — a B2B SaaS platform for creator monetisation. Grew from 0 to 200k MAU. Architected the real-time notification and payment systems.</div>
+        <div class="timeline-chips">
+          <span class="chip">Next.js</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">Stripe</span>
+          <span class="chip">Kubernetes</span>
+        </div>
+      </div>
+      <div class="timeline-item reveal reveal-delay-2">
+        <div class="timeline-date">2018 — 2020</div>
+        <div class="timeline-role">Full-Stack Developer</div>
+        <div class="timeline-company">Meridian Labs · Austin, TX</div>
+        <div class="timeline-desc">Built data visualisation tools for climate research institutions. First engineering hire; helped scale the team and establish engineering culture and best practices.</div>
+        <div class="timeline-chips">
+          <span class="chip">React</span>
+          <span class="chip">Python</span>
+          <span class="chip">D3.js</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-glow"></div>
+  <div class="container">
+    <div class="contact-grid">
+      <div>
+        <div class="section-tag reveal">Get in touch</div>
+        <h2 class="section-title reveal">Let's build something great.</h2>
+        <p class="contact-info reveal">I'm currently open to new projects and full-time roles. Whether you have a product to build, a problem to solve, or just want to explore what's possible — I'd love to hear from you.</p>
+        <div class="contact-links reveal reveal-delay-1">
+          <a class="contact-link" href="mailto:alex@example.com">
+            <span class="link-icon"><i class="fa-solid fa-envelope"></i></span>
+            <span>alex@example.com</span>
+            <span class="link-arrow">→</span>
+          </a>
+          <a class="contact-link" href="#" target="_blank">
+            <span class="link-icon"><i class="fa-brands fa-github"></i></span>
+            <span>github.com/alexchen</span>
+            <span class="link-arrow">→</span>
+          </a>
+          <a class="contact-link" href="#" target="_blank">
+            <span class="link-icon"><i class="fa-brands fa-linkedin"></i></span>
+            <span>linkedin.com/in/alexchen</span>
+            <span class="link-arrow">→</span>
+          </a>
+          <a class="contact-link" href="#" target="_blank">
+            <span class="link-icon"><i class="fa-brands fa-whatsapp"></i></span>
+            <span>@alexchen on WhatsApp</span>
+            <span class="link-arrow">→</span>
+          </a>
+          <a class="contact-link" href="#" target="_blank">
+            <span class="link-icon"><i class="fa-brands fa-facebook-f"></i></span>
+            <span>@alexchen on Facebook</span>
+            <span class="link-arrow">→</span>
+          </a>
+          <a class="contact-link" href="#" target="_blank">
+            <span class="link-icon"><i class="fa-brands fa-instagram"></i></span>
+            <span>@alexchen on Instagram</span>
+            <span class="link-arrow">→</span>
+          </a>
+          
+          <a class="contact-link" href="#" target="_blank">
+            <span class="link-icon"><i class="fa-brands fa-youtube"></i></span>
+            <span>@alexchen on YouTube</span>
+            <span class="link-arrow">→</span>
+          </a>
+          <a class="contact-link" href="#" target="_blank">
+            <span class="link-icon"><i class="fa-brands fa-tiktok"></i></span>
+            <span>@alexchen on Tiktok</span>
+            <span class="link-arrow">→</span>
+          </a>
+          <a class="contact-link" href="#" target="_blank">
+            <span class="link-icon"><i class="fa-brands fa-snapchat"></i></span>
+            <span>@alexchen on Snapchat</span>
+            <span class="link-arrow">→</span>
+          </a>
+        </div>
+      </div>
+      <form class="contact-form reveal reveal-delay-1" id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-field">
+            <label for="fname">First name</label>
+            <input type="text" id="fname" placeholder="Jane" required>
+          </div>
+          <div class="form-field">
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" placeholder="Doe" required>
+          </div>
+        </div>
+        <div class="form-field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" placeholder="jane@company.com" required>
+        </div>
+        <div class="form-field">
+          <label for="message">Tell me about your project</label>
+          <textarea id="message" placeholder="What are you building? What's the challenge? What does success look like?" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="align-self:flex-start">Send message →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Thenul Vidusitha</div>
+  <div class="footer-copy">
+          <p>
+            <span>©</span><span id="year"></span> — All rights reserved | Made by Me 💙
+          </p>
+        </div>
+  <div class="footer-links">
+    <a href="#hero">Top</a>
+    <a href="projects.html">Work</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ Message sent! I'll be in touch soon.</div>
+
+
+
+<script>
+  
+
+  /* ─── Form submit ─── */
+  function handleSubmit(e){
+    e.preventDefault();
+    const toast=document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'),4000);
+    e.target.reset();
+  }
+
+
+/* ─── Typography Fade Animation ─── */
+const roles=['Graphic Designer.','Video Editor.','Animator.','Developer.','Youtuber.','Tech Enthusiast.','Innovator.'];
+let ri = 0;
+const accentEl = document.querySelector('.hero-title .accent');
+
+function animateFadeText() {
+  if (!accentEl) return;
+  
+  // 1. Trigger the fade out
+  accentEl.classList.add('is-hidden');
+  
+  // 2. Wait for the CSS transition to finish, then swap text and fade in
+  setTimeout(() => {
+    ri = (ri + 1) % roles.length;
+    accentEl.textContent = roles[ri];
+    
+    // Trigger the fade back in
+    accentEl.classList.remove('is-hidden');
+  }, 600); // This 600ms matches the transition duration in your CSS
+}
+
+// Start the cycle (changes word every 3 seconds)
+if (accentEl) {
+  // Ensure the first word starts visible, then begin the interval
+  accentEl.textContent = roles[ri];
+  setInterval(animateFadeText, 3000);
+}
+
+
+
+  /* ─── Scroll-activated number counters ─── */
+  const statEls=document.querySelectorAll('.stat-num[data-target]');
+  let countersRun=false;
+  function easeOutQuart(t){return 1-(--t)*t*t*t}
+  function runCounters(){
+    if(countersRun)return;
+    countersRun=true;
+    statEls.forEach((el,i)=>{
+      const target=+el.dataset.target;
+      const suffix=el.dataset.suffix||'';
+      const duration=1600+i*120;
+      const start=performance.now();
+      function tick(now){
+        const elapsed=now-start;
+        const progress=Math.min(elapsed/duration,1);
+        const eased=easeOutQuart(progress);
+        const value=Math.round(eased*target);
+        el.innerHTML=value+'<span class="plus">'+suffix+'</span>';
+        if(progress<1)requestAnimationFrame(tick);
+      }
+      setTimeout(()=>requestAnimationFrame(tick),i*80);
+    });
+  }
+  const statsObserver=new IntersectionObserver(entries=>{
+    if(entries[0].isIntersecting){runCounters();statsObserver.disconnect()}
+  },{threshold:0.5});
+  const heroStats=document.querySelector('.hero-stats');
+  if(heroStats)statsObserver.observe(heroStats);
+
+  /* ─── Work filters ─── */
+  const filterBtns=document.querySelectorAll('.filter-btn');
+  const cards=document.querySelectorAll('#projectsGrid .project-card');
+  const countEl=document.getElementById('visibleCount');
+  const total=cards.length;
+
+  filterBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      filterBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f=btn.dataset.filter;
+      let visible=0;
+      cards.forEach(card=>{
+        const match=f==='all'||card.dataset.category===f;
+        if(match){
+          card.classList.remove('filtered-out');
+          visible++;
+        } else {
+          card.classList.add('filtered-out');
         }
+      });
+      countEl.textContent=visible;
+    });
+  });
 
-        // Global refresh function (called after local update)
-        window.refreshUI = function() {
-            renderAdminProjects();
-            updateAndAnimateCards();
-        }
 
-        // --- MOBILE MENU LOGIC ---
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            const icon = document.querySelector('#mobile-menu-btn i');
-            isMobileMenuOpen = !isMobileMenuOpen;
-            
-            if (isMobileMenuOpen) {
-                menu.classList.remove('opacity-0', 'pointer-events-none');
-                menu.classList.add('opacity-100', 'pointer-events-auto');
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-                icon.setAttribute('data-lucide', 'x');
-            } else {
-                menu.classList.remove('opacity-100', 'pointer-events-auto');
-                menu.classList.add('opacity-0', 'pointer-events-none');
-                document.body.style.overflow = ''; // Restore scrolling
-                icon.setAttribute('data-lucide', 'menu');
-            }
-            lucide.createIcons();
-        }
 
-        // --- DROPDOWN LOGIC ---
-        function toggleDropdown(id) {
-            const menu = document.getElementById(id);
-            const isClosing = menu.classList.contains('opacity-100');
-            
-            closeAllDropdowns();
-            
-            if (!isClosing) {
-                menu.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
-                menu.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
-                activeDropdown = id;
-            }
-        }
 
-        function closeAllDropdowns() {
-            ['category-menu', 'year-menu'].forEach(id => {
-                const menu = document.getElementById(id);
-                if (menu) {
-                    menu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
-                    menu.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
-                }
-            });
-            activeDropdown = null;
-        }
 
-        function renderFilters() {
-            const catContainer = document.getElementById('category-menu');
-            const yearContainer = document.getElementById('year-menu');
-            
-            const baseClasses = "w-full text-left px-5 py-3 text-[10px] sm:text-xs tracking-widest font-semibold transition-all duration-200 focus:outline-none flex justify-between items-center";
-            const activeClasses = "bg-[#d4ff00]/10 text-[#d4ff00]";
-            const inactiveClasses = "text-gray-400 hover:text-white hover:bg-white/5";
+  /* ─── Popup ─── */
+  // function closePopup(){
+  //   const ov=document.getElementById('popup-overlay');
+  //   ov.classList.remove('show');
+  //   document.body.classList.remove('popup-open');
+  // }
+  // document.getElementById('popupClose').addEventListener('click',closePopup);
+  // document.getElementById('popup-overlay').addEventListener('click',e=>{if(e.target===e.currentTarget)closePopup()});
+  // document.addEventListener('keydown',e=>{if(e.key==='Escape')closePopup()});
+  // document.querySelectorAll('.popup-btn-primary,.popup-btn-ghost').forEach(a=>a.addEventListener('click',closePopup));
 
-            // Update Selected Text in the buttons
-            document.getElementById('selected-category').textContent = activeCategory;
-            document.getElementById('selected-year').textContent = activeYear;
 
-            // Render Categories
-            catContainer.innerHTML = categories.map(cat => {
-                const isActive = activeCategory === cat;
-                return `
-                    <button 
-                        onclick="handleCategoryChange('${cat}')"
-                        class="${baseClasses} ${isActive ? activeClasses : inactiveClasses}"
-                    >
-                        ${cat}
-                        ${isActive ? '<i data-lucide="check" class="w-3 h-3"></i>' : ''}
-                    </button>
-                `;
-            }).join('');
+    /* ─── Scroll reveal ─── */
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-            // Extract unique years from projects dynamically
-            const dynamicYears = ["ALL", ...new Set(window.projects.map(p => p.year))].sort().reverse();
-            
-            // Render Years
-            yearContainer.innerHTML = dynamicYears.map(year => {
-                const isActive = activeYear === year;
-                return `
-                    <button 
-                        onclick="handleYearChange('${year}')"
-                        class="${baseClasses} ${isActive ? activeClasses : inactiveClasses}"
-                    >
-                        ${year}
-                        ${isActive ? '<i data-lucide="check" class="w-3 h-3"></i>' : ''}
-                    </button>
-                `;
-            }).join('');
+  /* ─── Parallax hero grid ─── */
+  document.addEventListener('mousemove',e=>{
+    const x=(e.clientX/window.innerWidth-0.5)*20;
+    const y=(e.clientY/window.innerHeight-0.5)*20;
+    const grid=document.querySelector('.grid-bg');
+    if(grid)grid.style.transform=`translate(${x*0.3}px,${y*0.3}px)`;
+  });
 
-            lucide.createIcons(); // Ensure checkmark icons render inside the menu
-        }
+  /* ─── Nav scroll behavior ─── */
+  const nav=document.querySelector('nav');
+  window.addEventListener('scroll',()=>{
+    nav.style.background=window.scrollY>80?'rgba(9,9,11,0.92)':'rgba(9,9,11,0.6)';
+  });
 
-        function handleCategoryChange(newCat) {
-            if (newCat !== activeCategory) {
-                activeCategory = newCat;
-                updateAndAnimateCards();
-            }
-            closeAllDropdowns();
-        }
+  /* ─── Footer year ─── */
 
-        function handleYearChange(newYear) {
-            if (newYear !== activeYear) {
-                activeYear = newYear;
-                updateAndAnimateCards();
-            }
-            closeAllDropdowns();
-        }
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-        function updateAndAnimateCards() {
-            renderFilters(); // Update button styles
 
-            // Animate cards out
-            const cards = document.querySelectorAll('.project-card');
-            cards.forEach(card => {
-                card.style.transitionDelay = '0ms'; // Remove staggered delay for exit
-                card.classList.remove('opacity-100', 'scale-100', 'translate-y-0');
-                card.classList.add('opacity-0', 'scale-95');
-            });
 
-            // Wait for fade out, then render new cards
-            setTimeout(() => {
-                renderProjects();
-            }, 300);
-        }
+  document.addEventListener('DOMContentLoaded', () => {
+  const popup = document.getElementById('security-popup');
+  let popupTimeout;
 
-        function renderProjects() {
-            const container = document.getElementById('projects-grid');
-            
-            // Filter by both Category and Year
-            const filteredProjects = window.projects.filter(p => {
-                const matchCategory = activeCategory === "ALL" || p.category === activeCategory;
-                const matchYear = activeYear === "ALL" || p.year === activeYear;
-                return matchCategory && matchYear;
-            });
+  // Function to show and auto-hide the popup
+  function showSecurityPopup() {
+    popup.classList.add('show');
+    
+    // Reset timer if triggered multiple times quickly
+    clearTimeout(popupTimeout);
+    popupTimeout = setTimeout(() => {
+      popup.classList.remove('show');
+    }, 3000); // Hides after 3 seconds
+  }
 
-            // Update counter
-            document.getElementById('project-count').innerHTML = `
-                <span class="text-[#d4ff00] font-bold">${filteredProjects.length}</span> / ${window.projects.length} projects
-            `;
+  // 1. Disable Right-Click (Context Menu)
+  document.addEventListener('contextmenu', (e) => {
+    // Allow right-click on input fields so users can paste text if needed
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    
+    e.preventDefault();
+    showSecurityPopup();
+  });
 
-            if (filteredProjects.length === 0) {
-                // Empty State HTML
-                container.innerHTML = `
-                    <div class="col-span-full flex flex-col items-center justify-center py-20 sm:py-32 text-center border border-dashed border-white/10 rounded-2xl bg-[#0f0f0f] project-card opacity-0 translate-y-10 transition-all duration-500">
-                        <div class="bg-black/50 p-5 rounded-full mb-6 border border-white/5">
-                            <i data-lucide="folder-search-2" class="w-8 h-8 sm:w-10 sm:h-10 text-gray-600"></i>
-                        </div>
-                        <h3 class="text-xl sm:text-2xl font-black text-white mb-2 tracking-tight">NO PROJECTS INITIALIZED</h3>
-                        <p class="text-xs sm:text-sm text-gray-500 max-w-sm mx-auto leading-relaxed px-4">
-                            There are no projects matching the selected criteria. Try adjusting your filters or check back later.
-                        </p>
-                    </div>
-                `;
-            } else {
-                // Build HTML for cards
-                container.innerHTML = filteredProjects.map((project, index) => `
-                    <a href="${project.link}" 
-                       class="project-card group block bg-[#0f0f0f] rounded-2xl p-4 sm:p-5 border border-white/5 hover:border-[#d4ff00]/30 transition-all duration-500 transform hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)] opacity-0 translate-y-10"
-                       style="transition-delay: ${index * 100}ms">
-                        
-                        <div class="w-full h-56 sm:h-64 md:h-72 rounded-xl mb-4 sm:mb-6 relative overflow-hidden bg-gradient-to-br ${project.gradient} transition-transform duration-500 group-hover:scale-[1.02]">
-                            
-                            <!-- Project Image -->
-                            ${project.imageUrl ? `<img src="${project.imageUrl}" alt="${project.title}" class="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105" onerror="this.style.display='none'">` : ''}
+  // 2. Disable Copy and Cut events
+  ['copy', 'cut'].forEach(event => {
+    document.addEventListener(event, (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      
+      e.preventDefault();
+      showSecurityPopup();
+    });
+  });
 
-                            <!-- Grid overlay (kept for texture) -->
-                            <div class="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px); background-size: 30px 30px"></div>
+  // 3. Disable Keyboard Shortcuts (Ctrl+C, Cmd+C, etc.)
+  document.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    
+    // Block Ctrl/Cmd + C (Copy), X (Cut), U (View Source), S (Save), P (Print)
+    if ((e.ctrlKey || e.metaKey) && ['c', 'x', 'u', 's', 'p'].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+      showSecurityPopup();
+    }
+  });
+});
 
-                            <!-- Top Tags -->
-                            <div class="absolute top-3 left-3 right-3 sm:top-4 sm:left-4 sm:right-4 flex justify-between items-start z-10">
-                                <span class="text-[9px] sm:text-[10px] font-bold tracking-widest text-gray-300 sm:text-gray-400 uppercase bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
-                                    ${project.category}
-                                </span>
-                                <span class="text-[9px] sm:text-[10px] font-mono tracking-widest text-gray-300 sm:text-gray-500 bg-black/50 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
-                                    ${project.year}
-                                </span>
-                            </div>
+</script>
 
-                            <!-- Hover Overlay Link Icon -->
-                            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[2px]">
-                                <div class="bg-[#d4ff00] text-black p-3 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 shadow-[0_0_20px_rgba(212,255,0,0.4)]">
-                                    <i data-lucide="external-link" class="w-5 h-5"></i>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!-- Content -->
-                        <div class="px-1 sm:px-2 flex flex-col h-[calc(100%-15rem)] sm:h-[calc(100%-17.5rem)] md:h-[calc(100%-19.5rem)]">
-                            <h3 class="text-lg sm:text-xl md:text-2xl font-bold mb-2 sm:mb-3 tracking-tight group-hover:text-[#d4ff00] transition-colors line-clamp-1">
-                                ${project.title}
-                            </h3>
-                            <p class="text-xs sm:text-sm text-gray-400 leading-relaxed mb-4 sm:mb-6 line-clamp-2">
-                                ${project.description}
-                            </p>
-                            
-                            <!-- Tech Stack Tags -->
-                            <div class="flex flex-wrap gap-1.5 sm:gap-2 mt-auto">
-                                ${project.tech.map(t => `
-                                    <span class="text-[9px] sm:text-[10px] font-mono tracking-widest text-gray-400 sm:text-gray-500 border border-white/10 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-white/5">
-                                        ${t}
-                                    </span>
-                                `).join('')}
-                            </div>
-                        </div>
-                    </a>
-                `).join('');
-            }
-
-            // Initialize Lucide icons
-            lucide.createIcons();
-
-            // Trigger entrance animations by removing initial hidden classes
-            requestAnimationFrame(() => {
-                setTimeout(() => {
-                    const cards = document.querySelectorAll('.project-card');
-                    cards.forEach(card => {
-                        card.classList.remove('opacity-0', 'translate-y-10', 'scale-95');
-                        card.classList.add('opacity-100', 'translate-y-0', 'scale-100');
-                    });
-                }, 50);
-            });
-        }
-
-        // --- TEMPORARY SAVE STATUS ---
-        window.showTemporarySaveStatus = function() {
-            const statusEl = document.getElementById('save-status');
-            if(statusEl) {
-                statusEl.classList.remove('hidden');
-                statusEl.classList.add('flex');
-                statusEl.innerHTML = '<i data-lucide="check-circle" class="w-4 h-4 text-[#d4ff00]"></i> Changes applied (Export to save)';
-                lucide.createIcons();
-                setTimeout(() => {
-                    statusEl.classList.add('hidden');
-                    statusEl.classList.remove('flex');
-                }, 3000);
-            }
-        };
-
-        async function generateHTMLContent() {
-            // Instead of fetching the URL (which fails on blob/iframe networks), 
-            // clone the live document to build a clean source code layout.
-            const clone = document.documentElement.cloneNode(true);
-            
-            // Clean up transient UI states
-            const panel = clone.querySelector('#admin-panel');
-            if(panel) panel.classList.add('hidden', 'opacity-0');
-            
-            const pwdModal = clone.querySelector('#password-modal');
-            if(pwdModal) pwdModal.classList.add('hidden', 'opacity-0');
-            
-            const mobileMenu = clone.querySelector('#mobile-menu');
-            if(mobileMenu) {
-                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
-            }
-
-            clone.querySelector('body').style.overflow = '';
-            
-            // Clear dynamically generated lists so they rebuild cleanly on next load
-            const grid = clone.querySelector('#projects-grid');
-            if(grid) grid.innerHTML = '';
-
-            const catMenu = clone.querySelector('#category-menu');
-            if(catMenu) catMenu.innerHTML = '';
-
-            const yearMenu = clone.querySelector('#year-menu');
-            if(yearMenu) yearMenu.innerHTML = '';
-
-            const adminList = clone.querySelector('#admin-projects-list');
-            if(adminList) adminList.innerHTML = '';
-
-            const count = clone.querySelector('#project-count');
-            if(count) count.innerHTML = '';
-            
-            // Re-inject the updated JSON payload securely back into the script tag
-            const dataScript = clone.querySelector('#portfolio-data');
-            if (dataScript) {
-                const projectsJson = JSON.stringify(window.projects, null, 12).replace(/<\/script>/g, '<\\/script>');
-                dataScript.textContent = `\n        window.projects = ${projectsJson};\n    `;
-            }
-
-            return '<!DOCTYPE html>\n' + clone.outerHTML;
-        }
-
-        // --- EXPORT HTML SOURCE CODE FEATURE (MANUAL DOWNLOAD) ---
-        window.exportSourceCode = async function() {
-            try {
-                const statusEl = document.getElementById('save-status');
-                if(statusEl) {
-                    statusEl.classList.remove('hidden');
-                    statusEl.classList.add('flex');
-                    statusEl.innerHTML = '<i data-lucide="download" class="w-4 h-4 animate-bounce"></i> Generating file...';
-                    lucide.createIcons();
-                }
-
-                const htmlContent = await generateHTMLContent();
-                
-                // Trigger an invisible download anchor tag
-                const blob = new Blob([htmlContent], { type: 'text/html' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'portfolio-updated.html';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-
-                if(statusEl) {
-                    statusEl.innerHTML = '<i data-lucide="check-circle" class="w-4 h-4 text-[#d4ff00]"></i> Export successful';
-                    lucide.createIcons();
-                    setTimeout(() => {
-                        statusEl.classList.add('hidden');
-                        statusEl.classList.remove('flex');
-                    }, 3000);
-                }
-            } catch (error) {
-                console.error("Failed to export source code:", error);
-                const statusEl = document.getElementById('save-status');
-                if(statusEl) {
-                    statusEl.classList.remove('hidden');
-                    statusEl.classList.add('flex');
-                    statusEl.innerHTML = '<i data-lucide="x-circle" class="w-4 h-4 text-red-500"></i> Export failed';
-                    lucide.createIcons();
-                }
-            }
-        };
-
-        // --- ADMIN PANEL LOGIC ---
-
-        function openPasswordModal() {
-            const modal = document.getElementById('password-modal');
-            const content = document.getElementById('password-modal-content');
-            modal.classList.remove('hidden');
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    modal.classList.remove('opacity-0');
-                    content.classList.remove('scale-95');
-                });
-            });
-            document.getElementById('admin-password').focus();
-        }
-
-        function closePasswordModal() {
-            const modal = document.getElementById('password-modal');
-            const content = document.getElementById('password-modal-content');
-            modal.classList.add('opacity-0');
-            content.classList.add('scale-95');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                document.getElementById('admin-password').value = '';
-                document.getElementById('password-error').classList.add('hidden');
-            }, 300);
-        }
-
-        function checkPassword() {
-            const pass = document.getElementById('admin-password').value;
-            // HARDCODED PASSWORD HERE
-            if (pass === 'admin123') {
-                closePasswordModal();
-                setTimeout(openAdminPanel, 300);
-            } else {
-                document.getElementById('password-error').classList.remove('hidden');
-            }
-        }
-
-        function openAdminPanel() {
-            const panel = document.getElementById('admin-panel');
-            panel.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            renderAdminProjects();
-            requestAnimationFrame(() => {
-                requestAnimationFrame(() => {
-                    panel.classList.remove('opacity-0');
-                });
-            });
-        }
-
-        function closeAdminPanel() {
-            const panel = document.getElementById('admin-panel');
-            panel.classList.add('opacity-0');
-            document.body.style.overflow = ''; // Restore background scrolling
-            setTimeout(() => {
-                panel.classList.add('hidden');
-                hideAdminForm();
-            }, 500);
-        }
-
-        function renderAdminProjects() {
-            const list = document.getElementById('admin-projects-list');
-            
-            if (window.projects.length === 0) {
-                list.innerHTML = `
-                    <div class="flex flex-col items-center justify-center py-16 text-center border border-dashed border-white/10 rounded-xl bg-white/5">
-                        <i data-lucide="inbox" class="w-10 h-10 text-gray-600 mb-3"></i>
-                        <h3 class="text-white font-bold mb-1">NO PROJECTS FOUND</h3>
-                        <p class="text-gray-500 text-xs">Click "New Project" to add your first portfolio item.</p>
-                    </div>
-                `;
-            } else {
-                list.innerHTML = window.projects.map(p => `
-                    <div class="bg-[#111] border border-white/5 p-4 md:p-6 rounded-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-[#d4ff00]/30 hover:bg-[#1a1a1a] transition-all group">
-                        <div class="w-full sm:w-auto">
-                            <h3 class="font-bold text-white text-sm sm:text-base md:text-lg group-hover:text-[#d4ff00] transition-colors truncate">${p.title}</h3>
-                            <p class="text-[10px] md:text-xs text-gray-500 font-mono tracking-widest mt-1">${p.category} • ${p.year}</p>
-                        </div>
-                        <div class="flex gap-2 w-full sm:w-auto self-end">
-                            <button onclick="showAdminForm(${p.id})" class="flex-1 sm:flex-none justify-center p-2 sm:px-4 sm:py-2 bg-white/5 hover:bg-white/10 rounded-lg text-gray-300 transition-colors flex items-center gap-2 text-xs font-bold">
-                                <i data-lucide="edit-2" class="w-4 h-4"></i> <span>Edit</span>
-                            </button>
-                            <button onclick="deleteProject(${p.id})" class="flex-1 sm:flex-none justify-center p-2 sm:px-4 sm:py-2 bg-red-500/10 hover:bg-red-500/20 text-red-500 rounded-lg transition-colors flex items-center gap-2 text-xs font-bold">
-                                <i data-lucide="trash-2" class="w-4 h-4"></i> <span>Delete</span>
-                            </button>
-                        </div>
-                    </div>
-                `).join('');
-            }
-            lucide.createIcons();
-        }
-
-        function showAdminForm(id = null) {
-            document.getElementById('admin-list-view').classList.add('hidden');
-            document.getElementById('admin-form-view').classList.remove('hidden');
-            
-            // Populate Category Dropdown
-            const catSelect = document.getElementById('proj-category');
-            const availableCategories = categories.filter(c => c !== "ALL");
-            const allUniqueCats = [...new Set([...availableCategories, ...window.projects.map(p => p.category), "MOBILE APP", "OPEN SOURCE", "PHOTOGRAPHY"])];
-            catSelect.innerHTML = allUniqueCats.map(cat => `<option value="${cat}">${cat}</option>`).join('');
-
-            // Populate Year Dropdown
-            const yearSelect = document.getElementById('proj-year');
-            const currentYear = new Date().getFullYear();
-            const projectYears = window.projects.map(p => parseInt(p.year)).filter(y => !isNaN(y));
-            const minYear = projectYears.length > 0 ? Math.min(...projectYears) : 2015;
-            const maxYear = Math.max(currentYear + 1, ...projectYears);
-            
-            let yearOptions = '';
-            for(let y = maxYear; y >= Math.min(minYear, 2015); y--) {
-                yearOptions += `<option value="${y}">${y}</option>`;
-            }
-            yearSelect.innerHTML = yearOptions;
-            
-            if (id) {
-                document.getElementById('form-title').innerText = 'Edit Project';
-                const p = window.projects.find(proj => proj.id === id);
-                document.getElementById('proj-id').value = p.id;
-                document.getElementById('proj-title').value = p.title;
-                document.getElementById('proj-category').value = p.category;
-                document.getElementById('proj-year').value = p.year;
-                document.getElementById('proj-tech').value = p.tech.join(', ');
-                document.getElementById('proj-desc').value = p.description;
-                document.getElementById('proj-image-url').value = p.imageUrl || '';
-                document.getElementById('proj-gradient').value = p.gradient;
-            } else {
-                document.getElementById('form-title').innerText = 'Add New Project';
-                document.getElementById('proj-id').value = '';
-                document.getElementById('proj-title').value = '';
-                document.getElementById('proj-category').value = allUniqueCats[0] || 'WEB APP';
-                document.getElementById('proj-year').value = currentYear.toString();
-                document.getElementById('proj-tech').value = '';
-                document.getElementById('proj-desc').value = '';
-                document.getElementById('proj-image-url').value = '';
-                document.getElementById('proj-gradient').value = 'from-[#1a1a24] to-[#0a0a0f]';
-            }
-        }
-
-        function hideAdminForm() {
-            document.getElementById('admin-list-view').classList.remove('hidden');
-            document.getElementById('admin-form-view').classList.add('hidden');
-        }
-
-        function saveProject() {
-            const id = document.getElementById('proj-id').value;
-            const newProject = {
-                id: id ? parseInt(id) : Date.now(),
-                title: document.getElementById('proj-title').value || 'Untitled Project',
-                category: (document.getElementById('proj-category').value || 'UNCATEGORIZED').toUpperCase(),
-                year: document.getElementById('proj-year').value || new Date().getFullYear().toString(),
-                description: document.getElementById('proj-desc').value || '',
-                tech: document.getElementById('proj-tech').value.split(',').map(t => t.trim()).filter(t => t),
-                link: '#', 
-                imageUrl: document.getElementById('proj-image-url').value || '',
-                gradient: document.getElementById('proj-gradient').value || 'from-[#1a1a1a] to-[#0a0a0a]'
-            };
-
-            if (id) {
-                const idx = window.projects.findIndex(p => p.id === parseInt(id));
-                if (idx !== -1) window.projects[idx] = newProject;
-            } else {
-                window.projects.unshift(newProject); // add to top
-                if (!categories.includes(newProject.category)) {
-                    categories.push(newProject.category);
-                }
-            }
-
-            hideAdminForm();
-            window.refreshUI(); // Refreshes Admin UI + Main Dashboard visually
-
-            // Show status
-            window.showTemporarySaveStatus();
-        }
-
-        function deleteProject(id) {
-            window.projects = window.projects.filter(p => p.id !== id);
-            window.refreshUI();
-            
-            // Show status
-            window.showTemporarySaveStatus();
-        }
-
-        // Run setup when DOM is fully loaded
-        document.addEventListener('DOMContentLoaded', () => {
-            initApp();
-        });
-    </script>
+<script src="script.js"></script>
 </body>
 </html>
